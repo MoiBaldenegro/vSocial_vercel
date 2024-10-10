@@ -13,9 +13,9 @@ import Features from "../components/Features.astro";
 import Testimonials from "../components/Testimonials.astro";
 import { getI18n } from "../i18n";
 
-const {currentLocale = "en"} = Astro;
+const { currentLocale = "en" } = Astro;
 
-const i18n = getI18n({currentLocale});
+const i18n = getI18n({ currentLocale });
 ---
 
 <Layout title="SocialPicAI">
@@ -54,7 +54,6 @@ const i18n = getI18n({currentLocale});
   import { descargarZip } from "../utils/dowloader/downloader";
   import { promtsOptions } from "../configs/promts";
 
-  const ImagenDePrueba = transformerModel("https://www.google.com");
   const widget = document.getElementById("local-widget");
   let downloads: [] = [];
   import { networksFormats } from "../configs/formats";
@@ -91,22 +90,9 @@ const i18n = getI18n({currentLocale});
     ) => {
       const public_id = e.detail.info.public_id;
       //navigate(`/previews?id=${public_id}`);
-
-      /////////////////////////////////////////////////////////////////
-      /////  imagen antes de transformar //////////////////////////////
-      ////////////////////////////////////////////////////////////////
-
-      const previesBefore = document.getElementById("preview-image-container");
-      const previewImage = document.createElement("img");
-      previewImage.className = "w-[250px] h-[250px] object-cover rounded";
-      const previewImageUrl = getCldImageUrl({
-        src: public_id,
-      });
-      previewImage.src = previewImageUrl;
-      previesBefore.appendChild(previewImage);
-      // previsualizamos y guardamos la id - solo eso haremos
-
-      /////////////////////////////////////////////////////////////////
+      const previewResponse = transformerModel(public_id); // instancia con la public-ip
+      previewResponse.getImageUrl();
+      previewResponse.renderPreview();
     }) as EventListener);
   }
 

@@ -1,11 +1,16 @@
 import { transformerFunctions } from "./transformerFunctions";
+import { transformerService } from "./transformerService";
 
-export const transformerModel = (url) => {
+export const transformerModel = (publicId) => {
   let state = {
-    originalUrl: url,
+    public: publicId,
+    url: "",
     transformedUrl: "",
-    state: ["Probando funcionamiento"],
   };
 
-  return { state, ...transformerFunctions(state) };
+  return {
+    state,
+    ...transformerFunctions(state),
+    ...transformerService(state),
+  };
 };

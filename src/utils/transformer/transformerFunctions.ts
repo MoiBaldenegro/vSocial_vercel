@@ -1,21 +1,14 @@
 export const transformerFunctions = (state) => ({
-  printUrl: () => {
-    console.log(
-      `Original URL: ${state.originalUrl}, Transformed URL: ${state.transformedUrl}`
-    );
-  },
-
-  printTransformedUrl: () => {
-    console.log(state.TransformedUrl);
-  },
-
-  changeUrl: () => {
-    state.transformedUrl = "otraURLalaverga";
+  renderPreview: () => {
+    const previewBefore = document.getElementById("preview-image-container");
+    const previewImage = document.createElement("img");
+    previewImage.className = "w-[250px] h-[250px] object-cover rounded";
+    previewImage.src = state.url;
+    previewBefore.appendChild(previewImage);
   },
 });
 
 /*
-
  const options = {
         ...networksFormats[PreviewsOptions.FACEBOOK_PROFILE],
         src: public_id,
