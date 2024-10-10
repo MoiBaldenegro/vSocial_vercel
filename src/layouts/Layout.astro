@@ -1,0 +1,110 @@
+---
+import { getI18n } from "../i18n";
+
+const {currentLocale = "en"} = Astro;
+
+const i18n = getI18n({currentLocale});
+interface Props {
+  title: string;
+}
+const { title } = Astro.props;
+---
+
+<!doctype html>
+<html >
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="description" content={i18n.site.description} />
+    <meta name="viewport" content="width=device-width" />
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <link rel="stylesheet" href="/src/styles/global.css" />
+    <meta name="generator" content={Astro.generator} />
+    <title>{title}</title>
+  </head>
+  <body class="bg-white dark:bg-gray-900 text-gray-900 dark:text-white">
+    <header class="flex flex-col md:flex-row justify-between items-center">
+      <div class="flex flex-col md:flex-row gap-4 md:items-center px-8">
+        <a  class="text-2xl text-center font-bold py-8"
+          >{i18n.site.title}</a
+        >
+        <img src="./escudo.png" alt="logo" class="w-[200px] h-[200px] logo" />
+      </div>
+      <nav class="hidden md:block md:p-8">
+          showFlag={true}
+          class="bg-white dark:bg-gray-800 p-2 rounded"
+        />
+      </nav>
+    </header>
+    <slot />
+    <footer class="p-4 text-center">
+      <p> {i18n.site.title}. {i18n.footer.rights}</p>
+    </footer>
+  </body>
+</html>
+<style is:global>
+  :root {
+    --accent: 136, 58, 234;
+    --accent-light: 224, 204, 250;
+    --accent-dark: 49, 10, 101;
+    --accent-gradient: linear-gradient(
+      45deg,
+      rgb(var(--accent)),
+      rgb(var(--accent-light)) 30%,
+      white 60%
+    );
+  }
+
+  html {
+    font-family: system-ui, sans-serif;
+    background-size: 224px;
+  }
+
+  code {
+    font-family:
+      Menlo,
+      Monaco,
+      Lucida Console,
+      Liberation Mono,
+      DejaVu Sans Mono,
+      Bitstream Vera Sans Mono,
+      Courier New,
+      monospace;
+  }
+
+  body {
+    transition:
+      background-color 0.7s ease,
+      color 0.8s ease;
+  }
+  .logo {
+    filter: drop-shadow(0px 8px 6px rgb(58, 58, 58));
+  }
+</style>
+
+<script>
+  // Función para alternar el modo oscuro
+  function toggleDarkMode() {
+    document.documentElement.classList.toggle("dark");
+    localStorage.setItem(
+      "darkMode",
+      document.documentElement.classList.contains("dark")
+    );
+  }
+
+  // Verificar la preferencia del usuario
+  if (
+    localStorage.getItem("darkMode") === "true" ||
+    (!("darkMode" in localStorage) &&
+      window.matchMedia("(prefers-color-scheme: dark)").matches)
+  ) {
+    document.documentElement.classList.add("dark");
+  }
+
+  // Agregar el botón de alternancia al DOM y configurar el evento
+  const darkModeToggle = document.createElement("button");
+  darkModeToggle.innerHTML = "🌓";
+  darkModeToggle.className =
+    "fixed bottom-4 right-4 bg-gray-200 dark:bg-gray-700 p-2 rounded-full";
+  darkModeToggle.addEventListener("click", toggleDarkMode);
+  document.body.appendChild(darkModeToggle);
+</script>

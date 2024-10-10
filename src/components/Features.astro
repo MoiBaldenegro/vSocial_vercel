@@ -1,0 +1,16 @@
+---
+import FeatureCard from "./FeatureCard.astro";
+import { features } from "../constants/features";
+import { getI18n } from "../i18n";
+
+const {currentLocale = "en"} = Astro;
+
+const i18n = getI18n({currentLocale});
+---
+
+<section class="my-12">
+  <h2 class="text-3xl font-bold mb-6 text-center">{i18n.features.title}</h2>
+  <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+    {features.map((feature) => <FeatureCard {...feature} />)}
+  </div>
+</section>

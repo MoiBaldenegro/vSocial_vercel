@@ -1,0 +1,195 @@
+---
+import Layout from "../layouts/Layout.astro";
+import { getCldImageUrl } from "astro-cloudinary/helpers";
+import { promts } from "../../public/promts/promts";
+import { CldImage } from "astro-cloudinary";
+import FacebookPreview from "../components/FacebookPreview.astro";
+
+const { searchParams } = Astro.url;
+const id = searchParams.get("id");
+
+if (id === null) {
+  console.log("id es null");
+  // Aquí podríamos abrir un modal
+}
+
+const url = getCldImageUrl({ src: id });
+
+const data = {
+  data: "data",
+};
+---
+
+<Layout title="SocialPicAI">
+  <main class="container mx-auto px-4 py-8" data-id={id}>
+    <button id="download-button">Download Image</button>
+
+    // agregaremos clases para ue el div de las imagenes sea un grid responsive
+    auto ajustable
+    <div class="grid grid-cols-2 gap-4 md:grid-cols-3">
+      <div>
+        <FacebookPreview
+          name="John Doe"
+          profilePicture="https://via.placeholder.com/120"
+          coverPhoto="https://via.placeholder.com/500x200"
+          friendCount={1000}
+        />
+      </div>
+      <img
+        hidden
+        id="previewFacebook"
+        src={url}
+        width={800}
+        height={800}
+        alt="facebook__image"
+      />
+      <img
+        hidden
+        id="instagram-preview"
+        src={url}
+        width={800}
+        height={800}
+        alt="facebook__image"
+      />
+      <img
+        hidden
+        id="preview-twitter"
+        src={url}
+        width={800}
+        height={800}
+        alt="facebook__image"
+      />
+    </div>
+    <two-up id="two-up" hidden>
+      <img
+        id="original"
+        src={url}
+        alt="facebook image"
+        class="w-full h-full object-cover rounded"
+      />
+      <img
+        id="preview"
+        src={url}
+        alt="facebook image"
+        class="w-full h-full object-cover rounded"
+      />
+    </two-up>
+  </main>
+  <button id={promts.filterHalloween}>Transform Image 1</button>
+  <button>Transform Image 2</button>
+</Layout>
+
+<script>
+  import { getCldImageUrl } from "astro-cloudinary/helpers";
+  import JSZip from "jszip";
+  import { saveAs } from "file-saver";
+  import "two-up-element";
+
+  const buttons = document.querySelectorAll("button");
+  const id = document.querySelector("main")?.getAttribute("data-id");
+  const previews = document.querySelectorAll("#preview");
+  const allImages = document.querySelectorAll("img");
+
+  const urlFacebook = getCldImageUrl({
+    src: id,
+    replaceBackground: "un fondo terrorífico con alusión a halloween",
+    crop: {
+      height: 720,
+      width: 720,
+      source: true,
+      type: "fill",
+      gravity: "face",
+    },
+  });
+
+  const urlInstagram = getCldImageUrl({
+    src: id,
+    replaceBackground: "un fondo terrorífico con alusión a halloween",
+    crop: {
+      height: 1080,
+      width: 1080,
+      source: true,
+      type: "fill",
+      gravity: "face",
+    },
+  });
+
+  const urlTwitter = getCldImageUrl({
+    src: id,
+    replaceBackground: "un fondo terrorífico con alusión a halloween",
+    crop: {
+      height: 400,
+      width: 400,
+      source: true,
+      type: "fill",
+      gravity: "face",
+    },
+  });
+
+  // Función para descargar las imágenes como ZIP
+  const downloadButton = document.getElementById("download-button");
+
+  const descargarZip = async () => {
+    const zip = new JSZip();
+
+    try {
+      const facebookResponse = await fetch(urlFacebook); // check
+      const facebookBlob = await facebookResponse.blob();
+      zip.file("facebook_image.jpg", facebookBlob);
+
+      const instagramResponse = await fetch(urlInstagram);
+      const instagramBlob = await instagramResponse.blob();
+      zip.file("instagram_image.jpg", instagramBlob);
+
+      const twitterResponse = await fetch(urlTwitter);
+      const twitterBlob = await twitterResponse.blob();
+      zip.file("twitter_image.jpg", twitterBlob);
+
+      const content = await zip.generateAsync({ type: "blob" });
+      saveAs(content, "images.zip");
+    } catch (error) {
+      console.error("Error creando el ZIP:", error);
+    }
+  };
+
+  // Asociar el evento click al botón de descarga
+  downloadButton.addEventListener("click", descargarZip);
+
+  // Transformar imágenes
+  buttons.forEach((button) => {
+    button.addEventListener("click", () => {
+      allImages.forEach((image) => {
+        image.removeAttribute("hidden");
+      });
+      const twoComponent = document.getElementById("two-up");
+      twoComponent.removeAttribute("hidden");
+      const url = getCldImageUrl({
+        src: id,
+        replaceBackground: "un fondo terrorífico con alusión a halloween",
+      });
+
+      previews.forEach((preview) => {
+        preview.style.opacity = "0.3";
+        preview.src = url;
+        preview.onload = () => {
+          preview.style.opacity = "1";
+        };
+      });
+    });
+  });
+
+  const instagramPreview = document.getElementById("instagram-preview");
+  if (instagramPreview) {
+    instagramPreview.src = urlInstagram;
+  }
+
+  const previewFacebook = document.getElementById("previewFacebook");
+  if (previewFacebook) {
+    previewFacebook.src = urlFacebook;
+  }
+
+  const previewTwitter = document.getElementById("preview-twitter");
+  if (previewTwitter) {
+    previewTwitter.src = urlTwitter;
+  }
+</script>

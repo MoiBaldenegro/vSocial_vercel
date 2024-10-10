@@ -1,0 +1,48 @@
+{
+  "site": {
+    "title": "Generador de Imágenes Sociales",
+    "description": "Crea imágenes profesionales para tus redes sociales en segundos"
+  },
+  "home": {
+    "title": "Genera <0>Imágenes Profesionales</0> para Redes Sociales",
+    "subtitle": "Sube tu foto y obtén versiones optimizadas para cada plataforma"
+  },
+  "form": {
+    "uploadImage": "Sube tu imagen",
+    "generate": "Generar Imágenes"
+  },
+  "features": {
+    "title": "Características",
+    "quick": {
+      "title": "Rápido y Fácil",
+      "description": "Genera imágenes para todas las redes sociales en segundos"
+    },
+    "professional": {
+      "title": "Aspecto Profesional",
+      "description": "Obtén imágenes de alta calidad para mejorar tu presencia en línea"
+    },
+    "customizable": {
+      "title": "Personalizable",
+      "description": "Ajusta las imágenes según tus preferencias y marca personal"
+    }
+  },
+  "testimonials": {
+    "title": "Lo que dicen nuestros usuarios",
+    "user1": {
+      "name": "María García",
+      "role": "Influencer",
+      "content": "Esta herramienta me ha ahorrado horas de trabajo. ¡Ahora puedo mantener una imagen coherente en todas mis redes sociales!"
+    },
+    "user2": {
+      "name": "Carlos Rodríguez",
+      "role": "Emprendedor",
+      "content": "Impresionante servicio. Ha mejorado significativamente mi presencia en línea con imágenes profesionales."
+    }
+  },
+  "userResults": {
+    "title": "Resultados de Nuestros Usuarios"
+  },
+  "footer": {
+    "rights": "Todos los derechos reservados."
+  }
+}

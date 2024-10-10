@@ -1,0 +1,159 @@
+---
+import Layout from "../layouts/Layout.astro";
+import FeatureCard from "../components/FeatureCard.astro";
+import Testimonial from "../components/Testimonial.astro";
+import UserResultsCarousel from "../components/UserResultsCarousel.astro";
+import { CldUploadWidget } from "astro-cloudinary";
+import { getCldImageUrl } from "astro-cloudinary/helpers";
+import { transformerModel } from "../utils/transformer/transformerModel";
+import Header from "../components/Header.astro";
+import Hero from "../components/Hero.astro";
+import UploadWidget from "../components/UploadWidget.astro";
+import Features from "../components/Features.astro";
+import Testimonials from "../components/Testimonials.astro";
+import { getI18n } from "../i18n";
+
+const {currentLocale = "en"} = Astro;
+
+const i18n = getI18n({currentLocale});
+---
+
+<Layout title="SocialPicAI">
+  <main class="container mx-auto md:px-4 md:py-8">
+    <Hero />
+    <UploadWidget />
+    // crearemos un preview de la imagen subida antes de Transformar
+    <div id="preview-image-container">
+      // Ava previsualizamos la imagen antes de enviarla
+    </div>
+    <div
+      id="results"
+      class="mt-8 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4"
+    >
+      <!-- Los resultados se mostrarán aquí -->
+    </div>
+    <button id="download-button-index">Download SuperSet</button>
+    <h2 id="select-prompt">Select Prompt</h2>
+    <div
+      id="select-prompt-container"
+      class="mt-8 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4"
+    >
+      <!-- Los estilos de los prompts se mostrarán aquí -->
+    </div>
+    <UserResultsCarousel />
+    <Features />
+    <Testimonials />
+  </main>
+</Layout>
+<script>
+  import { navigate } from "astro:transitions/client";
+  import { transformerModel } from "../utils/transformer/transformerModel";
+  import { getCldImageUrl } from "astro-cloudinary/helpers";
+  import { facebookPreview } from "../templates/preview";
+  import { PreviewsOptions } from "../types/previews.types";
+  import { descargarZip } from "../utils/dowloader/downloader";
+  import { promtsOptions } from "../configs/promts";
+
+  const ImagenDePrueba = transformerModel("https://www.google.com");
+  const widget = document.getElementById("local-widget");
+  let downloads: [] = [];
+  import { networksFormats } from "../configs/formats";
+
+  let selectedPromt = null;
+
+  const stylePromts = document.getElementById("select-prompt-container");
+
+  if (stylePromts) {
+    stylePromts.innerHTML = "";
+    const stylePromtsOptions = document.createElement("div");
+    stylePromtsOptions.className =
+      "bg-white dark:bg-gray-800 rounded-lg shadow-md p-6 mb-12";
+
+    promtsOptions.forEach((option) => {
+      const stylePromt = document.createElement("button");
+      stylePromt.className =
+        "w-full bg-purple-600 hover:bg-purple-700 text-white font-bold py-2 px-4 rounded";
+      stylePromt.innerHTML = option.name;
+      stylePromt.addEventListener("click", () => {
+        selectedPromt = option.value;
+        stylePromtsOptions.innerHTML = "";
+        stylePromtsOptions.appendChild(stylePromt);
+      });
+      stylePromtsOptions.appendChild(stylePromt);
+    });
+    // Agregar el evento de descarga al botón creado
+    stylePromts.appendChild(stylePromtsOptions);
+  }
+
+  if (widget) {
+    widget.addEventListener("clduploadwidget:success", ((
+      e: CustomEvent<{ info: { public_id: string } }>
+    ) => {
+      const public_id = e.detail.info.public_id;
+      //navigate(`/previews?id=${public_id}`);
+
+      /////////////////////////////////////////////////////////////////
+      /////  imagen antes de transformar //////////////////////////////
+      ////////////////////////////////////////////////////////////////
+
+      const previesBefore = document.getElementById("preview-image-container");
+      const previewImage = document.createElement("img");
+      previewImage.className = "w-[250px] h-[250px] object-cover rounded";
+      const previewImageUrl = getCldImageUrl({
+        src: public_id,
+      });
+      previewImage.src = previewImageUrl;
+      previesBefore.appendChild(previewImage);
+      // previsualizamos y guardamos la id - solo eso haremos
+
+      /////////////////////////////////////////////////////////////////
+    }) as EventListener);
+  }
+
+  document.getElementById("imageForm").addEventListener("submit", async (e) => {
+    e.preventDefault();
+    const form = e.target as HTMLFormElement;
+    const formData = new FormData(form);
+    const image = formData.get("userImage");
+
+    if (image) {
+      // Simulamos el procesamiento de la imagen
+      await new Promise((resolve) => setTimeout(resolve, 2000));
+
+      //const socialNetworks = [Previews.INSTAGRAM];
+
+      const resultsContainer = document.getElementById("results");
+      resultsContainer.innerHTML = "";
+
+      const imageUrl = URL.createObjectURL(image);
+
+      socialNetworks.forEach((network) => {
+        const card = document.createElement("div");
+        card.className = "bg-white dark:bg-gray-800 rounded-lg shadow-md p-4";
+        // const htmlContent = facebookPreview(urlFacebook);
+        card.innerHTML = "";
+
+        // Agregar el evento de descarga al botón creado
+        const button = card.querySelector("button");
+        button.addEventListener("click", () => {
+          const downloadLink = document.createElement("a");
+          downloadLink.href = imageUrl;
+          downloadLink.download = `${network}.png`;
+          downloadLink.click();
+        });
+        resultsContainer.appendChild(card);
+      });
+    }
+  });
+
+  // descargas/////////////////////
+  // Función para descargar las imágenes como ZIP
+
+  const downloadButton = document.getElementById("download-button-index");
+
+  if (downloadButton) {
+    downloadButton.addEventListener("click", () => {
+      descargarZip(downloads);
+    });
+  }
+</script>

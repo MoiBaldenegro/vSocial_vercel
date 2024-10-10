@@ -1,0 +1,95 @@
+---
+import { userResults } from "../constants/userResults";
+import { getI18n } from "../i18n";
+
+const {currentLocale = "en"} = Astro;
+
+const i18n = getI18n({currentLocale});
+---
+
+<section class="my-12">
+  <h2 class="text-3xl font-bold mb-6 text-center">
+    {i18n.userResults.title}
+    <div class="user-results-carousel relative">
+      <div class="carousel-container overflow-hidden">
+        <div
+          class="carousel-track flex transition-transform duration-300 ease-in-out"
+        >
+          {
+            userResults.map((result, index) => (
+              <div class="carousel-item flex-none w-full px-4">
+                <div class="bg-white dark:bg-gray-800 rounded-lg shadow-md p-6">
+                  <h3 class="text-xl font-semibold mb-4">{result.name}</h3>
+                  <div class="grid grid-cols-2 gap-4">
+                    <div>
+                      <p class="text-sm mb-2">Antes</p>
+                      <img
+                        src="billie.webp"
+                        alt={`${result.name} antes`}
+                        class="w-full h-48 object-cover rounded"
+                      />
+                    </div>
+                    <div>
+                      <p class="text-sm mb-2">Después</p>
+                      <img
+                        src="billieAfter.jfif"
+                        alt={`${result.name} después`}
+                        class="w-full h-48 object-cover rounded"
+                      />
+                    </div>
+                  </div>
+                </div>
+              </div>
+            ))
+          }
+        </div>
+      </div>
+      <button
+        class="carousel-prev absolute top-1/2 left-2 transform -translate-y-1/2 bg-white dark:bg-transparent rounded-full p-2 shadow-md size[200px]"
+      >
+        &#10094;
+      </button>
+      <button
+        class="carousel-next absolute top-1/2 right-2 transform -translate-y-1/2 bg-white dark:bg-transparent rounded-full p-2 shadow-md"
+      >
+        &#10095;
+      </button>
+    </div>
+  </h2>
+</section>
+<script>
+  const track = document.querySelector(".carousel-track");
+  const items = document.querySelectorAll(".carousel-item");
+  const prevButton = document.querySelector(".carousel-prev");
+  const nextButton = document.querySelector(".carousel-next");
+
+  let currentIndex = 0;
+
+  function updateCarousel() {
+    track.style.transform = `translateX(-${currentIndex * 100}%)`;
+  }
+
+  prevButton.addEventListener("click", () => {
+    currentIndex = (currentIndex - 1 + items.length) % items.length;
+    updateCarousel();
+  });
+
+  nextButton.addEventListener("click", () => {
+    currentIndex = (currentIndex + 1) % items.length;
+    updateCarousel();
+  });
+
+  // Auto-play
+  setInterval(() => {
+    currentIndex = (currentIndex + 1) % items.length;
+    updateCarousel();
+  }, 5000);
+</script>
+
+<style>
+  .carousel-container {
+    width: 100%;
+    max-width: 600px;
+    margin: 0 auto;
+  }
+</style>

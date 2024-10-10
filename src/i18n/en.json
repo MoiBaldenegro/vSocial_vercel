@@ -1,0 +1,52 @@
+{
+  "site": {
+    "title": "Social Image Generator",
+    "description": "Create professional images for your social networks in seconds"
+  },
+  "home": {
+    "title": "Generate <0>Professional Images</0> for Social Networks",
+    "subtitle": "Upload your photo and get optimized versions for each platform"
+  },
+  "form": {
+    "uploadImage": "Upload your image",
+    "generate": "Generate Images"
+  },
+  "features": {
+    "title": "Features",
+    "quick": {
+      "title": "Quick and Easy",
+      "description": "Generate images for all social networks in seconds"
+    },
+    "professional": {
+      "title": "Professional Look",
+      "description": "Get high-quality images to enhance your online presence"
+    },
+    "customizable": {
+      "title": "Customizable",
+      "description": "Adjust images according to your preferences and personal brand"
+    }
+  },
+  "testimonials": {
+    "title": "What our users say",
+    "user1": {
+      "name": "John Smith",
+      "role": "Influencer",
+      "content": "This tool has saved me hours of work. Now I can maintain a consistent image across all my social networks!"
+    },
+    "user2": {
+      "name": "Emily Johnson",
+      "role": "Entrepreneur",
+      "content": "Impressive service. It has significantly improved my online presence with professional images."
+    }
+  },
+  "userResults": {
+    "title": "Our Users' Results"
+  },
+  "footer": {
+    "rights": "All rights reserved."
+  },
+  "hero": {
+    "title": "Generate <0>Professional Images</0> for Social Networks",
+    "subtitle": "Upload your photo and get optimized versions for each platform"
+  }
+}
