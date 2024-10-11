@@ -12,9 +12,9 @@ import UploadWidget from "../components/UploadWidget.astro";
 import Features from "../components/Features.astro";
 import Testimonials from "../components/Testimonials.astro";
 import { getI18n } from "../i18n";
-
+import StyleSelector from "./StyleSelector.astro";
+import Loader from "./Loader.astro";
 const { currentLocale = "en" } = Astro;
-
 const i18n = getI18n({ currentLocale });
 ---
 
@@ -23,7 +23,7 @@ const i18n = getI18n({ currentLocale });
     <Hero />
     <UploadWidget />
     // crearemos un preview de la imagen subida antes de Transformar
-    <div id="preview-image-container">
+    <div id="preview-image-container" style="display: none;">
       // Ava previsualizamos la imagen antes de enviarla
     </div>
     <div
@@ -34,12 +34,14 @@ const i18n = getI18n({ currentLocale });
     </div>
     <button id="download-button-index">Download SuperSet</button>
     <h2 id="select-prompt">Select Prompt</h2>
+    <StyleSelector />
     <div
       id="select-prompt-container"
       class="mt-8 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4"
     >
       <!-- Los estilos de los prompts se mostrarán aquí -->
     </div>
+    <Loader />
     <UserResultsCarousel />
     <Features />
     <Testimonials />
@@ -53,15 +55,17 @@ const i18n = getI18n({ currentLocale });
   import { PreviewsOptions } from "../types/previews.types";
   import { descargarZip } from "../utils/dowloader/downloader";
   import { promtsOptions } from "../configs/promts";
+  import { randomState } from "../utils/randomState";
+
+  const dialog = document.querySelector("dialog");
 
   const widget = document.getElementById("local-widget");
   let downloads: [] = [];
   import { networksFormats } from "../configs/formats";
-
   let selectedPromt = null;
-
   const stylePromts = document.getElementById("select-prompt-container");
 
+  /*
   if (stylePromts) {
     stylePromts.innerHTML = "";
     const stylePromtsOptions = document.createElement("div");
@@ -83,16 +87,48 @@ const i18n = getI18n({ currentLocale });
     // Agregar el evento de descarga al botón creado
     stylePromts.appendChild(stylePromtsOptions);
   }
+  */
+  // luego creamos una funcion para hacerlo completamnte aleatorio
+  let isLoading = false;
+  let promt = randomState();
+  const loader = document.getElementById("loader");
 
   if (widget) {
     widget.addEventListener("clduploadwidget:success", ((
       e: CustomEvent<{ info: { public_id: string } }>
     ) => {
+      /*
       const public_id = e.detail.info.public_id;
       //navigate(`/previews?id=${public_id}`);
-      const previewResponse = transformerModel(public_id); // instancia con la public-ip
+      const previewResponse = transformerModel(public_id, promt);
+      isLoading = true;
+      const previewExecute = new Promise((resolve, reject) => {
+        widget.addEventListener("clduploadwidget:complete", (e) => {
+          isLoading = false;
+          resolve();
+        });
+        previewResponse.getImageUrl();
+        // debemos encontrar un evento de cloudinary que nos diga que termino
+        resolve();
+      });
+      previewExecute.then(() => {
+
+      }).catch((error) => {
+        console.error("Error:", error);
+      });
+      */
+      loader.removeAttribute("style");
+      const public_id = e.detail.info.public_id;
+      // instancia con la public-ip
+      const previewResponse = transformerModel(public_id, promt);
       previewResponse.getImageUrl();
+
       previewResponse.renderPreview();
+
+      // queremos pasar al dialogo de seleccion de estilos
+      // la instancia de previes response para que pueda modificar el estado
+      // de la instancia
+      const styleSelector = document.getElementById("style-selector-form");
     }) as EventListener);
   }
 
@@ -140,6 +176,21 @@ const i18n = getI18n({ currentLocale });
   if (downloadButton) {
     downloadButton.addEventListener("click", () => {
       descargarZip(downloads);
+    });
+  }
+
+  const styleSelectorForm = document.getElementById("style-selector-form");
+  if (styleSelectorForm) {
+    promtsOptions.forEach((option) => {
+      const stylePromt = document.createElement("div");
+      stylePromt.className =
+        "w-full dark:hover:bg-purple-700  hover:opacity-80 dark:text-white font-bold py-2 px-4 rounded dark:bg-black m-2";
+      stylePromt.innerHTML = option.name;
+      stylePromt.addEventListener("click", () => {
+        promt = option.value;
+        dialog.close();
+      });
+      styleSelectorForm.appendChild(stylePromt);
     });
   }
 </script>

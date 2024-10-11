@@ -1,6 +1,15 @@
 import { PreviewsOptions } from "../types/previews.types";
 
 export const networksFormats = {
+  otraCosa: {
+    crop: {
+      height: 200,
+      width: 200,
+      source: true,
+      type: "fill",
+      gravity: "face",
+    },
+  },
   [PreviewsOptions.FACEBOOK_PROFILE]: {
     crop: {
       height: 720,

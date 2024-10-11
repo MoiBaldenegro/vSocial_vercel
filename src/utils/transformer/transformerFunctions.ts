@@ -1,10 +1,55 @@
 export const transformerFunctions = (state) => ({
   renderPreview: () => {
-    const previewBefore = document.getElementById("preview-image-container");
-    const previewImage = document.createElement("img");
-    previewImage.className = "w-[250px] h-[250px] object-cover rounded";
-    previewImage.src = state.url;
-    previewBefore.appendChild(previewImage);
+    const res = new Promise((resolve, reject) => {
+      const previewBefore = document.getElementById("preview-image-container");
+      previewBefore.innerHTML = "";
+
+      const previewImage = document.createElement("img");
+      previewImage.src = state.url;
+      previewBefore.appendChild(previewImage);
+
+      // Cargar la imagen principal y luego las previews
+      let images = [previewImage];
+
+      // Crear las imágenes de las vistas previas
+      state.previews.forEach((preview) => {
+        const previewImage = document.createElement("img");
+        previewImage.src = preview;
+        previewBefore.appendChild(previewImage);
+        images.push(previewImage); // Agregarlas al array de imágenes a esperar
+      });
+
+      // Esperar a que todas las imágenes se carguen
+      let loadedCount = 0;
+      images.forEach((img) => {
+        img.addEventListener("load", () => {
+          loadedCount++;
+          // Si todas las imágenes se han cargado, resolver la promesa
+          if (loadedCount === images.length) {
+            resolve("");
+          }
+        });
+
+        img.addEventListener("error", (error) => {
+          console.error("Error al cargar la imagen:", error);
+          reject(error); // Rechazar la promesa si hay un error en alguna imagen
+        });
+      });
+    });
+
+    res
+      .then(() => {
+        const loader = document.getElementById("loader");
+        loader.style.display = "none";
+
+        const previewReady = document.getElementById("preview-ready");
+        previewReady.style.display = "block";
+      })
+      .catch((error) => {
+        console.error("Error en la carga de imágenes:", error);
+      });
+
+    return res;
   },
 });
 

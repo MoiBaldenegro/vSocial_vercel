@@ -27,4 +27,11 @@ export const promtsOptions = [
         "un fondo terrorífico con alusión a la epoca del futuro estilo ciberpunk en alta resolución estilo realista",
     },
   },
+  {
+    name: "Espacio",
+    value: {
+      replaceBackground:
+        "La superficie de la luna donde detras se ven todo el sistema solar y naves espaciales",
+    },
+  },
 ];

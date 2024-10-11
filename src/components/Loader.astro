@@ -1,0 +1,43 @@
+<div id="loader" style="display:none" class="flex justify-center items-center">
+  <div class="loader-container">
+    <div class="loader">CARGANDO...</div>
+  </div>
+</div>
+<button style="display:none" id="preview-ready"
+  >Mostrar previsualizaciones</button
+>
+<button id="reset-button" style="display:none">Resetear</button>
+<style>
+  .loader {
+    font-size: 65px;
+  }
+  button {
+    background-color: thistle;
+    color: black;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+  }
+</style>
+<script>
+  const resultsContainer = document.getElementById("preview-image-container");
+  const resetButton = document.getElementById("reset-button");
+  if (resetButton) {
+    // aca podemos resetear el estado
+    /*
+    resetButton.addEventListener("click", () => {
+      resultsContainer.style.display = "none";
+      resetButton.style.display = "none";
+    });
+    */
+  }
+  const readyButton = document.getElementById("preview-ready");
+  if (readyButton) {
+    readyButton.addEventListener("click", () => {
+      resultsContainer.removeAttribute("style");
+      readyButton.style.display = "none";
+      resetButton.style.display = "block";
+    });
+  }
+</script>

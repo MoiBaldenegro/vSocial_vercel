@@ -1,21 +1,25 @@
 import { getCldImageUrl } from "astro-cloudinary/helpers";
+import { networksFormats } from "../../configs/formats";
 import axios from "axios";
 
 export const transformerService = (state) => ({
-  transformImage: async () => {
-    const response = await axios(state.originalUrl);
-    console.log(response.data);
-    return response.data;
-  },
-
   getImageUrl: async () => {
+    const config = {
+      src: state.public,
+      ...state.promt,
+    };
     try {
-      const previewImageUrl = getCldImageUrl({
-        src: state.public,
-        replaceBackground: "un desierto muuuyy caliente",
+      const originalImageUrl = getCldImageUrl({ src: state.public });
+      state.url = originalImageUrl;
+
+      Object.entries(networksFormats).forEach(([key, value]) => {
+        const configIn = {
+          ...config,
+          ...value,
+        };
+        const previewImageUrl = getCldImageUrl(configIn);
+        state.previews.push(previewImageUrl);
       });
-      state.url = previewImageUrl;
-      return previewImageUrl;
     } catch (error) {
       console.error("Error getting image URL:", error);
       throw error;
@@ -24,7 +28,6 @@ export const transformerService = (state) => ({
 });
 
 /*
-
  const options = {
         ...networksFormats[PreviewsOptions.FACEBOOK_PROFILE],
         src: public_id,
@@ -74,9 +77,5 @@ export const transformerService = (state) => ({
         });
         resultsContainer.appendChild(card);
       });
-
-
-
-
 
 */

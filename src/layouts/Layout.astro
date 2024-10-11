@@ -55,7 +55,8 @@ const { title } = Astro.props;
     font-family: system-ui, sans-serif;
     background-size: 224px;
   }
-  * {
+
+  div {
     animation: reveal both;
     animation-timeline: view();
     animation-range: entry 20% cover 30%;
@@ -97,6 +98,8 @@ const { title } = Astro.props;
 </style>
 
 <script>
+  import { promtsOptions } from "../configs/promts";
+
   // Función para alternar el modo oscuro
   function toggleDarkMode() {
     document.documentElement.classList.toggle("dark");

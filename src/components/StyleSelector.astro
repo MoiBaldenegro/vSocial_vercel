@@ -1,0 +1,83 @@
+<dialog>
+  <p>Selector de estilos</p>
+  <form method="dialog" id="style-selector-form"></form>
+</dialog>
+<button id="style-selector-button">Seleccionar estilos</button>
+<style>
+  dialog {
+    transition: scale 0.3s ease;
+    scale: 0;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgb(42, 30, 97);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 10;
+    color: aqua;
+    border-radius: 8px;
+
+    &[open] {
+      scale: 1;
+
+      @starting-style {
+        scale: 0;
+      }
+    }
+  }
+  #style-selector-button {
+    background-color: white;
+    color: black;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+  }
+
+  @keyframes scale {
+    0% {
+      transform: scale(0.5);
+      opacity: 0;
+      visibility: hidden;
+    }
+    100% {
+      transform: scale(1);
+      opacity: 1;
+      visibility: visible;
+    }
+  }
+
+  /* Animación para ocultar (desaparecer con escala) */
+  @keyframes display {
+    0% {
+      transform: scale(1);
+      opacity: 1;
+      visibility: visible;
+    }
+    100% {
+      transform: scale(0.5);
+      opacity: 0;
+      visibility: hidden;
+    }
+  }
+</style>
+<script>
+  const selectorButton = document.getElementById("style-selector-button");
+  if (selectorButton) {
+    selectorButton.addEventListener("click", () => {
+      const dialog = document.querySelector("dialog");
+      dialog.showModal();
+    });
+  }
+
+  const styleCard = document.getElementById("style-card");
+  if (styleCard) {
+    styleCard.addEventListener("click", () => {
+      const dialog = document.querySelector("dialog");
+      dialog.close();
+    });
+  }
+</script>
