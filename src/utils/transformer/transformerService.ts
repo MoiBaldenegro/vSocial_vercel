@@ -1,6 +1,5 @@
 import { getCldImageUrl } from "astro-cloudinary/helpers";
 import { networksFormats } from "../../configs/formats";
-import axios from "axios";
 
 export const transformerService = (state) => ({
   getImageUrl: async () => {
