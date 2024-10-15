@@ -1,23 +1,34 @@
 import { getCldImageUrl } from "astro-cloudinary/helpers";
 import { networksFormats } from "../../configs/formats";
+import { renameFormat } from "../renameFormat";
 
 export const transformerService = (state) => ({
   getImageUrl: async () => {
     const config = {
-      src: state.public,
       ...state.promt,
+      src: state.public,
+      enhance: true,
     };
     try {
-      const originalImageUrl = getCldImageUrl({ src: state.public });
+      const originalImageUrl = getCldImageUrl({ src: state.public, });
       state.url = originalImageUrl;
 
       Object.entries(networksFormats).forEach(([key, value]) => {
+
+
         const configIn = {
           ...config,
           ...value,
         };
         const previewImageUrl = getCldImageUrl(configIn);
-        state.previews.push(previewImageUrl);
+
+        const download = {
+          name: renameFormat(key),
+          url: previewImageUrl,
+          title: key.toString(),
+        };
+        state.downloads.push(download);
+        state.previews.push(download);
       });
     } catch (error) {
       console.error("Error getting image URL:", error);

@@ -6,11 +6,12 @@
 <button style="display:none" id="preview-ready"
   >Mostrar previsualizaciones</button
 >
-<button id="reset-button" style="display:none">Resetear</button>
+  <div id="last" style="display: none;"> <button id="reset-button" style="display:none">Resetear</button></div>
 <style>
   .loader {
     font-size: 65px;
   }
+
   button {
     background-color: thistle;
     color: black;
@@ -21,16 +22,26 @@
   }
 </style>
 <script>
-  const resultsContainer = document.getElementById("preview-image-container");
+
+  const resultsContainer = document.getElementById("results");
   const resetButton = document.getElementById("reset-button");
+  const uploadSection = document.getElementById("upload-section");
+  const lastContainer = document.getElementById("last");
   if (resetButton) {
     // aca podemos resetear el estado
-    /*
     resetButton.addEventListener("click", () => {
+      resultsContainer.innerHTML = "";
+    const previewImage= document.getElementById("preview-img");
+
+      if(previewImage){
+        previewImage.remove();
+      }
       resultsContainer.style.display = "none";
       resetButton.style.display = "none";
+      uploadSection.style.display = "flex";  
+      lastContainer.style.display = "none";
+      
     });
-    */
   }
   const readyButton = document.getElementById("preview-ready");
   if (readyButton) {
@@ -38,6 +49,7 @@
       resultsContainer.removeAttribute("style");
       readyButton.style.display = "none";
       resetButton.style.display = "block";
+      lastContainer.removeAttribute("style");
     });
   }
 </script>

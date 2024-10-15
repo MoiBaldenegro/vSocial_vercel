@@ -1,4 +1,5 @@
 export interface Promt {
-  replaceBackground: string;
-  otraCosa?: string;
+  replaceBackground?: string;
+  background?: string;
+  enhance?: boolean;
 }

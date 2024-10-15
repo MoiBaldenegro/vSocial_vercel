@@ -9,6 +9,7 @@ export const transformerModel = (publicId, promt: Promt) => {
     transformedUrl: "",
     promt: promt,
     previews: [],
+    downloads: []
   };
 
   return {

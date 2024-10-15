@@ -19,34 +19,77 @@ const i18n = getI18n({ currentLocale });
 ---
 
 <Layout title="SocialPicAI">
-  <main class="container mx-auto md:px-4 md:py-8">
+  <main class="container mx-auto md:px-4 md:py-8" id="main-container">
     <Hero />
     <UploadWidget />
-    // crearemos un preview de la imagen subida antes de Transformar
-    <div id="preview-image-container" style="display: none;">
-      // Ava previsualizamos la imagen antes de enviarla
+    <div id="preview-image-container" style="display: none;" >
+      <div id="container-inner">
+        <div id="info">
+          <h3>Estilo: Aleatorio</h3>
+        </div>
+        <div id="transform-info" >
+          <button id="style-selector-button" style="display: none;" class="w-full dark:hover:bg-purple-700  hover:opacity-80 dark:text-white font-bold py-2 px-4 rounded dark:bg-black m-2">Seleccionar estilos</button>
+        </div>
+      </div>
     </div>
     <div
       id="results"
       class="mt-8 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4"
+      style="display: none;"
     >
       <!-- Los resultados se mostrarán aquí -->
     </div>
-    <button id="download-button-index">Download SuperSet</button>
-    <h2 id="select-prompt">Select Prompt</h2>
     <StyleSelector />
-    <div
-      id="select-prompt-container"
-      class="mt-8 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4"
-    >
-      <!-- Los estilos de los prompts se mostrarán aquí -->
-    </div>
-    <Loader />
-    <UserResultsCarousel />
-    <Features />
-    <Testimonials />
   </main>
+  <Loader />
+  <UserResultsCarousel />
+  <Features />
+  <Testimonials />
 </Layout>
+<style>
+  #preview-image-container {
+    border: 5px solid red !important;
+    padding: 16px;
+    height: 620px;
+    display: flex;
+    gap: 16px;
+
+    > img{
+      height: 100%;
+      
+    }
+
+    #transform-info{
+    
+      display: flex;
+      gap: 16px;
+
+      > button{
+        height: 96px;
+        padding: 16px;
+        border-radius: 16px;
+      }
+    }
+
+    #buttons-container{
+      gap: 16px;
+    }
+    #info{
+      border: 2px solid red;
+      height: 475px;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+     
+    }
+    #container-inner{
+      border: 2px solid blue;
+      width: 100%;
+    }
+
+    
+  }
+</style>
 <script>
   import { navigate } from "astro:transitions/client";
   import { transformerModel } from "../utils/transformer/transformerModel";
@@ -58,36 +101,14 @@ const i18n = getI18n({ currentLocale });
   import { randomState } from "../utils/randomState";
 
   const dialog = document.querySelector("dialog");
-
   const widget = document.getElementById("local-widget");
   let downloads: [] = [];
   import { networksFormats } from "../configs/formats";
   let selectedPromt = null;
-  const stylePromts = document.getElementById("select-prompt-container");
+  // const stylePromts = document.getElementById("select-prompt-container");
+  const styleSelectorForm = document.getElementById("style-selector-form");
+  const transformInfoContainer = document.getElementById("transform-info");
 
-  /*
-  if (stylePromts) {
-    stylePromts.innerHTML = "";
-    const stylePromtsOptions = document.createElement("div");
-    stylePromtsOptions.className =
-      "bg-white dark:bg-gray-800 rounded-lg shadow-md p-6 mb-12";
-
-    promtsOptions.forEach((option) => {
-      const stylePromt = document.createElement("button");
-      stylePromt.className =
-        "w-full bg-purple-600 hover:bg-purple-700 text-white font-bold py-2 px-4 rounded";
-      stylePromt.innerHTML = option.name;
-      stylePromt.addEventListener("click", () => {
-        selectedPromt = option.value;
-        stylePromtsOptions.innerHTML = "";
-        stylePromtsOptions.appendChild(stylePromt);
-      });
-      stylePromtsOptions.appendChild(stylePromt);
-    });
-    // Agregar el evento de descarga al botón creado
-    stylePromts.appendChild(stylePromtsOptions);
-  }
-  */
   // luego creamos una funcion para hacerlo completamnte aleatorio
   let isLoading = false;
   let promt = randomState();
@@ -97,89 +118,37 @@ const i18n = getI18n({ currentLocale });
     widget.addEventListener("clduploadwidget:success", ((
       e: CustomEvent<{ info: { public_id: string } }>
     ) => {
-      /*
-      const public_id = e.detail.info.public_id;
-      //navigate(`/previews?id=${public_id}`);
-      const previewResponse = transformerModel(public_id, promt);
-      isLoading = true;
-      const previewExecute = new Promise((resolve, reject) => {
-        widget.addEventListener("clduploadwidget:complete", (e) => {
-          isLoading = false;
-          resolve();
-        });
-        previewResponse.getImageUrl();
-        // debemos encontrar un evento de cloudinary que nos diga que termino
-        resolve();
-      });
-      previewExecute.then(() => {
 
-      }).catch((error) => {
-        console.error("Error:", error);
-      });
-      */
-      loader.removeAttribute("style");
+      const selectStyle = document.getElementById("style-selector-button");
+      selectStyle.style.display = "block";
+      const uploadSection = document.getElementById("upload-section");
+      uploadSection.style.display = "none";
+
+      const previewImageContainer = document.getElementById("preview-image-container");
+      previewImageContainer.style.display = "flex";
+
+     // loader.removeAttribute("style");
       const public_id = e.detail.info.public_id;
       // instancia con la public-ip
       const previewResponse = transformerModel(public_id, promt);
       previewResponse.getImageUrl();
+      previewResponse.showTransformerMenu();
+      const transformInfoContainer = document.getElementById("transform-info");
+      const transformButton = document.createElement("button");
+      transformButton.className = "w-full dark:hover:bg-purple-700  hover:opacity-80 dark:text-white font-bold py-2 px-4 rounded dark:bg-black m-2";
+      transformButton.textContent = "Transformar";
+      transformInfoContainer.appendChild(transformButton);
 
-      previewResponse.renderPreview();
+      // transformButton.disabled = true;
+      transformButton.addEventListener("click", () => {
+        previewImageContainer.style.display = "none";
+        previewResponse.renderPreview();
+        loader.removeAttribute("style");
+        transformButton.remove();
+      });
 
-      // queremos pasar al dialogo de seleccion de estilos
-      // la instancia de previes response para que pueda modificar el estado
-      // de la instancia
-      const styleSelector = document.getElementById("style-selector-form");
     }) as EventListener);
   }
-
-  document.getElementById("imageForm").addEventListener("submit", async (e) => {
-    e.preventDefault();
-    const form = e.target as HTMLFormElement;
-    const formData = new FormData(form);
-    const image = formData.get("userImage");
-
-    if (image) {
-      // Simulamos el procesamiento de la imagen
-      await new Promise((resolve) => setTimeout(resolve, 2000));
-
-      //const socialNetworks = [Previews.INSTAGRAM];
-
-      const resultsContainer = document.getElementById("results");
-      resultsContainer.innerHTML = "";
-
-      const imageUrl = URL.createObjectURL(image);
-
-      socialNetworks.forEach((network) => {
-        const card = document.createElement("div");
-        card.className = "bg-white dark:bg-gray-800 rounded-lg shadow-md p-4";
-        // const htmlContent = facebookPreview(urlFacebook);
-        card.innerHTML = "";
-
-        // Agregar el evento de descarga al botón creado
-        const button = card.querySelector("button");
-        button.addEventListener("click", () => {
-          const downloadLink = document.createElement("a");
-          downloadLink.href = imageUrl;
-          downloadLink.download = `${network}.png`;
-          downloadLink.click();
-        });
-        resultsContainer.appendChild(card);
-      });
-    }
-  });
-
-  // descargas/////////////////////
-  // Función para descargar las imágenes como ZIP
-
-  const downloadButton = document.getElementById("download-button-index");
-
-  if (downloadButton) {
-    downloadButton.addEventListener("click", () => {
-      descargarZip(downloads);
-    });
-  }
-
-  const styleSelectorForm = document.getElementById("style-selector-form");
   if (styleSelectorForm) {
     promtsOptions.forEach((option) => {
       const stylePromt = document.createElement("div");
@@ -193,4 +162,11 @@ const i18n = getI18n({ currentLocale });
       styleSelectorForm.appendChild(stylePromt);
     });
   }
+
+ 
+
+
+
+
+  
 </script>

@@ -8,71 +8,16 @@ const i18n = getI18n({currentLocale});
 ---
 
 <div
-  class="max-w-md mx-auto bg-white dark:bg-gray-800 rounded-lg shadow-md p-6 mb-12"
+  class="max-w-md mx-auto bg-white dark:bg-gray-800 rounded-lg shadow-md p-6 mb-12" id="upload-section"
 >
-  <form id="imageForm" class="space-y-4">
-    <div>
-      <label
-        for="userImage"
-        class="block text-sm font-medium text-gray-700 dark:text-gray-300"
-      >
-        {i18n.form.uploadImage}
-      </label>
-      <input
-        type="file"
-        id="userImage"
-        name="userImage"
-        accept="image/*"
-        required
-        class="mt-1 block w-full text-sm text-gray-900 border border-gray-300 rounded-lg cursor-pointer bg-gray-50 dark:text-gray-400 focus:outline-none dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400"
-      />
-    </div>
-    <button
-      type="submit"
-      class="w-full bg-purple-600 hover:bg-purple-700 text-white font-bold py-2 px-4 rounded"
-    >
-      {i18n.form.generate}
-    </button>
-  </form>
+<label
+for="userImage"
+class="block text-sm font-medium text-gray-700 dark:text-gray-300"
+>
+{i18n.form.uploadImage}
+</label>
 
-  <CldUploadWidget
-    options={{
-      sources: ["facebook"],
-      multiple: false,
-      maxFiles: 1,
-      language: "es",
-      text: {
-        es: {
-          dropbox: {
-            dd_title_single: "Sube tu foto",
-          },
-        },
-      },
-      styles: {},
-    }}
-    uploadPreset="mxvi-upload"
-  >
-    <button id="cdWidget">Facebook</button>
-  </CldUploadWidget>
-  <CldUploadWidget
-    options={{
-      sources: ["instagram"],
-      multiple: false,
-      maxFiles: 1,
-      language: "es",
-      text: {
-        es: {
-          dropbox: {
-            dd_title_single: "Sube tu foto",
-          },
-        },
-      },
-      styles: {},
-    }}
-    uploadPreset="mxvi-upload"
-  >
-    <button id="cdWidget">Instagram</button>
-  </CldUploadWidget>
+
   <CldUploadWidget
     id="local-widget"
     options={{
@@ -87,7 +32,31 @@ const i18n = getI18n({currentLocale});
           },
         },
       },
-      styles: {},
+      styles: {
+        palette: {
+            window: "#10173a",
+            sourceBg: "#20304b",
+            windowBorder: "#7171D0",
+            tabIcon: "#79F7FF",
+            inactiveTabIcon: "#8E9FBF",
+            menuIcons: "#CCE8FF",
+            link: "#72F1FF",
+            action: "#5333FF",
+            inProgress: "#00ffcc",
+            complete: "#33ff00",
+            error: "#cc3333",
+            textDark: "#000000",
+            textLight: "#ffffff"
+        },
+        fonts: {
+            default: null,
+            "'Poppins', sans-serif": {
+                url: "https://fonts.googleapis.com/css?family=Poppins",
+                active: true
+            }
+        }
+    }
+
     }}
     uploadPreset="mxvi-upload"
   >

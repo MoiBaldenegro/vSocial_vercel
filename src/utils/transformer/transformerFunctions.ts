@@ -1,22 +1,29 @@
+import { getCldImageUrl } from "astro-cloudinary/helpers";
+import { descargarZip } from "../dowloader/downloader";
+import { PreviewsOptions } from "../../types/previews.types";
+import { previewsExecution } from "../renderManagement";
+
 export const transformerFunctions = (state) => ({
   renderPreview: () => {
+    console.log(state)
     const res = new Promise((resolve, reject) => {
-      const previewBefore = document.getElementById("preview-image-container");
-      previewBefore.innerHTML = "";
-
-      const previewImage = document.createElement("img");
-      previewImage.src = state.url;
-      previewBefore.appendChild(previewImage);
-
-      // Cargar la imagen principal y luego las previews
-      let images = [previewImage];
-
+      let images = [];
+      const previewBefore = document.getElementById("results");
       // Crear las imágenes de las vistas previas
       state.previews.forEach((preview) => {
+        // aca vamos a crear la view no nada mas la imagen
+
+        ///////////////////////////////////////////////////////
+        const newPreview = previewsExecution(preview);
+        previewBefore.innerHTML += newPreview;
+
+        //////////////////////////////////////////////////////////
         const previewImage = document.createElement("img");
-        previewImage.src = preview;
+        previewImage.src = preview.url;
         previewBefore.appendChild(previewImage);
-        images.push(previewImage); // Agregarlas al array de imágenes a esperar
+
+
+        images.push(previewImage);
       });
 
       // Esperar a que todas las imágenes se carguen
@@ -24,15 +31,13 @@ export const transformerFunctions = (state) => ({
       images.forEach((img) => {
         img.addEventListener("load", () => {
           loadedCount++;
-          // Si todas las imágenes se han cargado, resolver la promesa
           if (loadedCount === images.length) {
             resolve("");
           }
         });
-
         img.addEventListener("error", (error) => {
           console.error("Error al cargar la imagen:", error);
-          reject(error); // Rechazar la promesa si hay un error en alguna imagen
+          reject(error);
         });
       });
     });
@@ -41,9 +46,17 @@ export const transformerFunctions = (state) => ({
       .then(() => {
         const loader = document.getElementById("loader");
         loader.style.display = "none";
-
         const previewReady = document.getElementById("preview-ready");
         previewReady.style.display = "block";
+        const lastContainer = document.getElementById("last");
+        const dowloadButton = document.createElement("button");
+        dowloadButton.id = "download-button-index";
+        dowloadButton.className = "dark:hover:bg-purple-700  hover:opacity-80 dark:text-white font-bold py-2 px-4 rounded dark:bg-black m-2";
+        dowloadButton.textContent = "Descargar SuperSet";
+        lastContainer.appendChild(dowloadButton);
+        dowloadButton.addEventListener("click", () => {
+          descargarZip(state.downloads);
+        });
       })
       .catch((error) => {
         console.error("Error en la carga de imágenes:", error);
@@ -51,6 +64,16 @@ export const transformerFunctions = (state) => ({
 
     return res;
   },
+
+  showTransformerMenu: () => {
+
+    const previewBefore = document.getElementById("preview-image-container");
+    const previewImage = document.createElement("img");
+    previewImage.id = "preview-img";
+    previewImage.src = state.url;
+    previewImage.className = "rounded-xl";
+    previewBefore.appendChild(previewImage);
+  }
 });
 
 /*
