@@ -1,10 +1,12 @@
 {
   "site": {
-    "title": "Generador de Imágenes Sociales",
+    "title": "Generador de Imágenes de haloween para Redes Sociales",
     "description": "Crea imágenes profesionales para tus redes sociales en segundos"
   },
   "home": {
-    "title": "Genera <0>Imágenes Profesionales</0> para Redes Sociales",
+    "title_1": "Genera",
+    "title_2": "Imágenes Profesionales",
+    "title_3": "para Redes Sociales",
     "subtitle": "Sube tu foto y obtén versiones optimizadas para cada plataforma"
   },
   "form": {
@@ -48,5 +50,8 @@
   "hero": {
     "title": "Genera <0>Imágenes Profesionales</0> para Redes Sociales",
     "subtitle": "Sube tu foto y obtén versiones optimizadas para cada plataforma"
+  },
+  "buttons": {
+    "uploadImage": "Comenzar"
   }
 }

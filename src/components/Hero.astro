@@ -6,8 +6,11 @@ const {currentLocale = "en"} = Astro;
 const i18n = getI18n({currentLocale});
 ---
 <main class="container md:mx-auto px-4 py-2 md:py-8"></main>
-<h1 class="text-4xl font-bold mb-8 text-center">
-   { i18n.hero.title }
+<h1 class="text-6xl font-bold mb-8 text-center ">
+   <span>{i18n.home.title_1}</span>
+   <span class="text-gradient">{i18n.home.title_2}</span>
+   <span>{i18n.home.title_3}</span>
+  <p class="text-center text-2xl mt-2">{i18n.home.subtitle}</p>
 </h1>
 <style>
   .text-gradient {
@@ -17,4 +20,6 @@ const i18n = getI18n({currentLocale});
     background-size: 400%;
     background-position: 0%;
   }
+
+ 
 </style>

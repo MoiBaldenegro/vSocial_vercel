@@ -1,10 +1,12 @@
 {
   "site": {
-    "title": "Social Image Generator",
+    "title": "Halloween Social Image Generator",
     "description": "Create professional images for your social networks in seconds"
   },
   "home": {
-    "title": "Generate <0>Professional Images</0> for Social Networks",
+    "title_1": "Generate",
+    "title_2": "Professional Images",
+    "title_3": "for Social Networks",
     "subtitle": "Upload your photo and get optimized versions for each platform"
   },
   "form": {
@@ -48,5 +50,8 @@
   "hero": {
     "title": "Generate <0>Professional Images</0> for Social Networks",
     "subtitle": "Upload your photo and get optimized versions for each platform"
+  },
+  "buttons": {
+    "uploadImage": "Get Started"
   }
 }

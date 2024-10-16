@@ -5,7 +5,6 @@ import { previewsExecution } from "../renderManagement";
 
 export const transformerFunctions = (state) => ({
   renderPreview: () => {
-    console.log(state)
     const res = new Promise((resolve, reject) => {
       let images = [];
       const previewBefore = document.getElementById("results");

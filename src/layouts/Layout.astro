@@ -23,13 +23,12 @@ const { title } = Astro.props;
   </head>
   <body class="bg-white dark:bg-gray-900 text-gray-900 dark:text-white">
     <header class="flex flex-col md:flex-row justify-between items-center">
-      <div class="flex flex-col md:flex-row gap-4 md:items-center px-8">
-        <a class="text-2xl text-center font-bold py-8">{i18n.site.title}</a>
-        <img src="./escudo.png" alt="logo" class="w-[200px] h-[200px] logo" />
+      <div class="flex flex-col md:flex-row gap-4 md:items-center px-24 py-8">
+        <a class="text-5xl text-center font-bold py-8">{i18n.site.title}</a>
+        <img src="./escudo.png" alt="logo" class="size-[250px] logo" />
       </div>
       <nav class="hidden md:block md:p-8">
-        showFlag={true}
-        class="bg-white dark:bg-gray-800 p-2 rounded" />
+       
       </nav>
     </header>
     <slot />
@@ -50,17 +49,20 @@ const { title } = Astro.props;
       white 60%
     );
   }
+  
 
   html {
     font-family: system-ui, sans-serif;
     background-size: 224px;
   }
 
+  /*
   div {
     animation: reveal both;
     animation-timeline: view();
     animation-range: entry 20% cover 30%;
   }
+    */
 
   code {
     font-family:

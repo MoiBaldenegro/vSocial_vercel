@@ -7,6 +7,11 @@ export function previewsExecution(preview) {
         const newPreview = facebookPreview(preview.url, preview.title, preview.name,);
         return newPreview;
     }
+
+    if (preview.title === PreviewsOptions.FACEBOOK_BIO) {
+        const newPreview = facebookPreview(preview.url, preview.title, preview.name,);
+        return newPreview;
+    }
     return "";
 
 }

@@ -8,11 +8,10 @@ const i18n = getI18n({currentLocale});
 ---
 
 <div
-  class="max-w-md mx-auto bg-white dark:bg-gray-800 rounded-lg shadow-md p-6 mb-12" id="upload-section"
+  class="mx-auto gap-6 flex justify-center items-center  rounded-lg p-6 m-12" id="upload-section"
 >
 <label
-for="userImage"
-class="block text-sm font-medium text-gray-700 dark:text-gray-300"
+class="block text-4xl text-center font-medium text-gray-700 dark:text-gray-300"
 >
 {i18n.form.uploadImage}
 </label>
@@ -60,7 +59,7 @@ class="block text-sm font-medium text-gray-700 dark:text-gray-300"
     }}
     uploadPreset="mxvi-upload"
   >
-    <button id="cdWidget">Local</button>
+    <button id="cdWidget" class="flex gap-4 items-center bg-custom-linear uppercase transition-opacity duration-300 hover:opacity-80 text-white font-bold py-6 px-12 rounded-xl transition ease text-3xl m-2">{i18n.buttons.uploadImage} <img src="./upload.svg" class="size-[42px]" alt="upload icon"></button>
   </CldUploadWidget>
 </div>
 <style>
@@ -72,17 +71,5 @@ class="block text-sm font-medium text-gray-700 dark:text-gray-300"
     background-position: 0%;
   }
 
-  #cdWidget {
-    background-color: #00c65e;
-    color: white;
-    border: none;
-    padding: 10px 20px;
-    border-radius: 5px;
-    font-size: 16px;
-    cursor: pointer;
-    transition: 0.3s ease-in-out;
-  }
-  #cdWidget:hover {
-    background-color: #00b359;
-  }
+  
 </style>
