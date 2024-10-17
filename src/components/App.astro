@@ -19,38 +19,62 @@ const i18n = getI18n({ currentLocale });
 ---
 
 <Layout title="SocialPicAI">
-  <main class="container mx-auto md:px-4 md:py-8" id="main-container">
+  <main class="container mx-auto md:px-4 md:py-8 px-8" id="main-container">
     <Hero />
     <UploadWidget />
+    <div class="relative"  id="transform-data-container" style="display: none;" >
+  <Loader />
+
     <div id="preview-image-container" style="display: none;" >
       <div id="container-inner">
-        <div id="info">
           <h3>Estilo: Aleatorio</h3>
-        </div>
-        <div id="transform-info" >
+          <div id="transform-info" >
           <button id="style-selector-button" style="display: none;" class="w-full dark:hover:bg-purple-700  hover:opacity-80 dark:text-white font-bold py-2 px-4 rounded dark:bg-black m-2">Seleccionar estilos</button>
         </div>
+      
       </div>
+    </div>
     </div>
     <div
       id="results"
-      class=" mt-8 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4"
+      class="w-fit mx-auto my-4 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 "
       style="display: none;"
     >
       <!-- Los resultados se mostrarán aquí -->
     </div>
     <StyleSelector />
   </main>
-  <Loader />
+
+  <div id="last" style="display: none;" > 
+    <button id="reset-button" style="display:none" class="flex gap-4 items-center bg-custom-linear uppercase transition-opacity duration-300 hover:opacity-80 text-white font-bold py-6 px-12 rounded-xl transition ease text-3xl mt-2" >Resetear <img src="./reset.svg" class="size-[42px]" alt=""></button>
+  </div>
+
   <UserResultsCarousel />
   <Features />
   <Testimonials />
 </Layout>
 <style>
+
+  #last{
+    height: 200px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-bottom: 100px;
+  }
+
+#transform-data-container{
+      width: fit-content;
+      min-width: 900px;
+      height: 450px;
+      margin: 0px auto;
+      border-radius: 16px;
+
+    }
+
   #preview-image-container {
-    border: 5px solid red !important;
     padding: 16px;
-    height: 620px;
+    height: 100%;
     display: flex;
     gap: 16px;
 
@@ -63,6 +87,7 @@ const i18n = getI18n({ currentLocale });
     
       display: flex;
       gap: 16px;
+      position: relative;
 
       > button{
         height: 96px;
@@ -76,18 +101,29 @@ const i18n = getI18n({ currentLocale });
     }
     #info{
       border: 2px solid red;
-      height: 475px;
       display: flex;
       justify-content: center;
       align-items: center;
+      flex: 1;
+      height: 100%;
      
     }
     #container-inner{
       border: 2px solid blue;
-      width: 100%;
-    }
+      display: flex;
+      flex-direction: column;
+      height: 100%;
+      width: 600px;
 
-    
+      > h3{
+        flex: 1;
+        width: 100%;
+       display: flex ;
+       justify-content: center;
+       align-items: center;
+      }
+     
+    }
   }
 </style>
 <script>
@@ -99,6 +135,7 @@ const i18n = getI18n({ currentLocale });
   import { descargarZip } from "../utils/dowloader/downloader";
   import { promtsOptions } from "../configs/promts";
   import { randomState } from "../utils/randomState";
+  import { styleSectionsPromts } from "../configs/promts";
 
   const dialog = document.querySelector("dialog");
   const widget = document.getElementById("local-widget");
@@ -123,7 +160,6 @@ const i18n = getI18n({ currentLocale });
       selectStyle.style.display = "block";
       const uploadSection = document.getElementById("upload-section");
       uploadSection.style.display = "none";
-
       const previewImageContainer = document.getElementById("preview-image-container");
       previewImageContainer.style.display = "flex";
 
@@ -147,26 +183,40 @@ const i18n = getI18n({ currentLocale });
         transformButton.remove();
       });
 
+      const transformDataContainer = document.getElementById("transform-data-container");
+      transformDataContainer.removeAttribute("style");
+
     }) as EventListener);
   }
+
+  
   if (styleSelectorForm) {
+
+    styleSectionsPromts.forEach((section) => {
+      const title = document.createElement("h2");
+      title.textContent = section.name;
+      title.className = "text-3xl dark:text-white semibold flex items-center border-b-2 border-custom-bg-dark pb-4";
+      styleSelectorForm.appendChild(title);
+      const styleSection = document.createElement("section");
+      styleSection.id = section.name;
+      styleSection.className = "w-full  grid grid-cols-1 md-lg-6:grid-cols-2  md-lg-5:grid-cols-3  md-lg-4:grid-cols-4  md-lg-3:grid-cols-5 md-lg-0:grid-cols-10 gap-4 md-lg-1:grid-cols-8 md-lg-2:grid-cols-6 "; 
+      styleSelectorForm.appendChild(styleSection);
+    })
+   
+
     promtsOptions.forEach((option) => {
+      const selectedSection = document.getElementById(option.type);
       const stylePromt = document.createElement("div");
       stylePromt.className =
-        "w-full dark:hover:bg-purple-700  hover:opacity-80 dark:text-white font-bold py-2 px-4 rounded dark:bg-black m-2";
-      stylePromt.innerHTML = option.name;
-      stylePromt.addEventListener("click", () => {
+        " dark:hover:bg-purple-700 h-[250px]  hover:opacity-80 dark:text-white font-bold rounded dark:bg-black m-2 ";
+        stylePromt.innerHTML = option.name;
+        stylePromt.addEventListener("click", () => {
         promt = option.value;
         dialog.close();
       });
-      styleSelectorForm.appendChild(stylePromt);
+      selectedSection.appendChild(stylePromt);
     });
   }
 
  
-
-
-
-
-  
 </script>

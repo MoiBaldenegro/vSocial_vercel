@@ -1,19 +1,24 @@
-<div id="loader" style="display: none;" class="flex justify-center items-center">
+<div id="loader" style="display: none;" class="flex justify-center items-center w-full h-full">
   <div class="loader-container">
     <div class="bat loader"></div>
     <div class="loaderLetters"></div> 
 
-  </div>
-</div>
-<button style="display:none" id="preview-ready"
-  >Mostrar previsualizaciones</button
->
-  <div id="last" style="display: none;"> <button id="reset-button" style="display:none">Resetear</button></div>
+   </div>
+    </div>
+      <button style="display:none" id="preview-ready" class="flex gap-4 items-center bg-custom-linear uppercase transition-opacity duration-300 hover:opacity-80 text-white font-bold py-6 px-12 rounded-xl transition ease text-3xl mt-2"
+      >Mostrar previsualizaciones <img src="./pre.svg" class="size-[42px]" alt="upload icon">
+      </button>
 <style>
 
+ 
+  #preview-ready {
+    margin: auto auto;
+  }
+  
+
   .loader-container {
-    width: 800px;
-    height: 400px;
+    width: 100%;
+    height: 100%;
     position: relative;
     display: flex;
     justify-content: center;
@@ -53,7 +58,7 @@
     calc(-5*var(--w)) 0 #df36ee, 
     calc(-6*var(--w)) 0, 
     calc(-7*var(--w)) 0, 
-    calc(-8*var(--w)) 0 green, 
+    calc(-8*var(--w)) 0 rgb(159, 20, 223), 
     calc(-9*var(--w)) 0;}
   40% {text-shadow: 
     calc(-1*var(--w)) 0, 
@@ -90,15 +95,9 @@
   .loader {
     font-size: 65px;
   }
-
-  button {
-    background-color: thistle;
-    color: black;
-    padding: 10px 20px;
-    border: none;
-    border-radius: 5px;
-    cursor: pointer;
-  }
+button {
+  white-space: nowrap;
+}
   /* Bat */
 .bat {
   width: 1px;
@@ -170,6 +169,7 @@
   const resetButton = document.getElementById("reset-button");
   const uploadSection = document.getElementById("upload-section");
   const lastContainer = document.getElementById("last");
+  const transformDataContainer = document.getElementById("transform-data-container");
   if (resetButton) {
     // aca podemos resetear el estado
     resetButton.addEventListener("click", () => {
@@ -191,8 +191,12 @@
     readyButton.addEventListener("click", () => {
       resultsContainer.removeAttribute("style");
       readyButton.style.display = "none";
-      resetButton.style.display = "block";
-      lastContainer.removeAttribute("style");
+      resetButton.style.display = "flex";
+      lastContainer.style.display = "flex";
+      lastContainer.className = "gap-4 justify-center"
+      uploadSection.style.display = "none";
+      transformDataContainer.style.display = "none";
+
     });
   }
 </script>

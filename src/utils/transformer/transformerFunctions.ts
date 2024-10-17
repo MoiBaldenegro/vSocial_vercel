@@ -8,21 +8,17 @@ export const transformerFunctions = (state) => ({
     const res = new Promise((resolve, reject) => {
       let images = [];
       const previewBefore = document.getElementById("results");
-      // Crear las imágenes de las vistas previas
-      state.previews.forEach((preview) => {
-        // aca vamos a crear la view no nada mas la imagen
 
-        ///////////////////////////////////////////////////////
+      // Crear las vistas previas (sin agregar las imágenes al DOM)
+      state.previews.forEach((preview) => {
+        // Generar la vista previa con `previewsExecution`
         const newPreview = previewsExecution(preview);
         previewBefore.innerHTML += newPreview;
 
-        //////////////////////////////////////////////////////////
+        // Crear elementos de imagen pero no agregarlos al DOM
         const previewImage = document.createElement("img");
         previewImage.src = preview.url;
-        previewBefore.appendChild(previewImage);
-
-
-        images.push(previewImage);
+        images.push(previewImage); // Almacenar las imágenes para control de carga
       });
 
       // Esperar a que todas las imágenes se carguen
@@ -31,7 +27,7 @@ export const transformerFunctions = (state) => ({
         img.addEventListener("load", () => {
           loadedCount++;
           if (loadedCount === images.length) {
-            resolve("");
+            resolve(""); // Resolver la promesa cuando todas las imágenes hayan cargado
           }
         });
         img.addEventListener("error", (error) => {
@@ -43,16 +39,34 @@ export const transformerFunctions = (state) => ({
 
     res
       .then(() => {
+        // Una vez que todas las imágenes estén listas, se procede
         const loader = document.getElementById("loader");
         loader.style.display = "none";
         const previewReady = document.getElementById("preview-ready");
-        previewReady.style.display = "block";
+        previewReady.style.display = "flex";
         const lastContainer = document.getElementById("last");
-        const dowloadButton = document.createElement("button");
+
+        // Verificar si ya existe un botón de descarga
+        let dowloadButton = document.getElementById("download-button-index");
+
+        if (dowloadButton) {
+          // Si el botón ya existe, lo reemplazamos con uno nuevo
+          dowloadButton.remove();
+        }
+        const dowloadIcon = document.createElement("img")
+        dowloadIcon.src = "./download.svg";
+        dowloadIcon.className = "size-[42px]"
+
+        // Crear el nuevo botón de descarga
+        dowloadButton = document.createElement("button");
         dowloadButton.id = "download-button-index";
-        dowloadButton.className = "dark:hover:bg-purple-700  hover:opacity-80 dark:text-white font-bold py-2 px-4 rounded dark:bg-black m-2";
+        dowloadButton.className = "flex gap-4 items-center bg-custom-linear uppercase transition-opacity duration-300 hover:opacity-80 text-white font-bold py-6 px-12 rounded-xl transition ease text-3xl mt-2";
         dowloadButton.textContent = "Descargar SuperSet";
+        dowloadButton.appendChild(dowloadIcon);
         lastContainer.appendChild(dowloadButton);
+
+
+        // Agregar el evento al botón
         dowloadButton.addEventListener("click", () => {
           descargarZip(state.downloads);
         });
@@ -63,6 +77,9 @@ export const transformerFunctions = (state) => ({
 
     return res;
   },
+
+
+
 
   showTransformerMenu: () => {
 

@@ -14,8 +14,8 @@ export const facebookPreview = (
         : null;
   const newPreview = facebookView(params[0], params[1], params[2], params[3]);
   return `
-      <div class="bg-white dark:bg-gray-800 rounded-lg shadow-md p-4">
-          <h3 class="text-lg font-semibold mb-2">${title}</h3>
+      <div class="bg-white dark:bg-gray-800 rounded-lg shadow-md p-4 w-[500px]">
+          <h4 class="text-lg font-semibold mb-2">${title}</h4>
           ${newPreview}
           <button class="mt-2 bg-blue-500 hover:bg-blue-600 text-white font-bold py-1 px-2 rounded text-sm">
             Descargar

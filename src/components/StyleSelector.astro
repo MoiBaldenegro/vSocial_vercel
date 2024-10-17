@@ -1,5 +1,5 @@
-<dialog>
-  <p>Selector de estilos</p>
+<dialog class="dark:bg-custom-bg-dark bg-white" >
+ <h2 class="text-5xl dark:text-white semibold flex items-center">Selecciona un estilo</h2>
   <form method="dialog" id="style-selector-form"></form>
 </dialog>
 <style>
@@ -11,13 +11,30 @@
     left: 0;
     width: 100%;
     height: 100%;
-    background: rgb(42, 30, 97);
     display: flex;
-    justify-content: center;
-    align-items: center;
+    flex-direction: column;
     z-index: 10;
-    color: aqua;
     border-radius: 8px;
+    padding: 32px;
+    gap: 32px;
+
+    > h2{
+      width: 100%;
+      height: 96px;
+    }
+
+    >form{
+      height: 100%;
+      padding: 32px;
+      background-color: rgba(128, 128, 128, 0.226);
+      border-radius: 16px;
+      box-shadow: 5px 5px 10px rgba(0, 0, 0, 0.2) inset;
+      overflow-y: auto;
+      overflow-x: hidden;
+      display: flex;
+      flex-direction: column;
+      gap: 16px;
+    }
 
     &[open] {
       scale: 1;
@@ -28,12 +45,12 @@
     }
   }
   #style-selector-button {
-    background-color: white;
     color: black;
     padding: 10px 20px;
     border: none;
     border-radius: 5px;
     cursor: pointer;
+    background-color: aqua;
   }
 
   @keyframes scale {
@@ -64,6 +81,7 @@
   }
 </style>
 <script>
+  
   const selectorButton = document.getElementById("style-selector-button");
   if (selectorButton) {
     selectorButton.addEventListener("click", () => {
