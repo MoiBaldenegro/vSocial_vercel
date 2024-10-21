@@ -29,9 +29,8 @@ const i18n = getI18n({ currentLocale });
       <div id="container-inner">
           <h3>Estilo: Aleatorio</h3>
           <div id="transform-info" >
-          <button id="style-selector-button" style="display: none;" class="w-full dark:hover:bg-purple-700  hover:opacity-80 dark:text-white font-bold py-2 px-4 rounded dark:bg-black m-2">Seleccionar estilos</button>
+          <button id="style-selector-button" style="display: none;" class="flex gap-4 items-center bg-custom-linear uppercase transition-opacity duration-300 hover:opacity-80 text-white font-bold py-4 px-8 rounded-xl transition ease text-2xl mt-2"  > Subir otra imagen <img src="return.svg" class="size-[42px]" alt="upload icon"></button>
         </div>
-      
       </div>
     </div>
     </div>
@@ -44,43 +43,40 @@ const i18n = getI18n({ currentLocale });
     </div>
     <StyleSelector />
   </main>
-
   <div id="last" style="display: none;" > 
     <button id="reset-button" style="display:none" class="flex gap-4 items-center bg-custom-linear uppercase transition-opacity duration-300 hover:opacity-80 text-white font-bold py-6 px-12 rounded-xl transition ease text-3xl mt-2" >Resetear <img src="./reset.svg" class="size-[42px]" alt=""></button>
   </div>
-
   <UserResultsCarousel />
   <Features />
   <Testimonials />
-</Layout>
-<style>
+  </Layout>
+  <style>
 
-  #last{
-    height: 200px;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    margin-bottom: 100px;
-  }
-
-#transform-data-container{
-      width: fit-content;
-      min-width: 900px;
-      height: 450px;
-      margin: 0px auto;
-      border-radius: 16px;
-
+    #last{
+      height: 200px;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      margin-bottom: 100px;
     }
 
-  #preview-image-container {
-    padding: 16px;
-    height: 100%;
-    display: flex;
-    gap: 16px;
+    #transform-data-container{
+          width: fit-content;
+          min-width: 900px;
+          height: 450px;
+          margin: 0px auto;
+          border-radius: 16px;
 
-    > img{
+      }
+
+    #preview-image-container {
+      padding: 16px;
       height: 100%;
-      
+      display: flex;
+      gap: 16px;
+
+      > img{
+        height: 100%;   
     }
 
     #transform-info{
@@ -99,6 +95,13 @@ const i18n = getI18n({ currentLocale });
     #buttons-container{
       gap: 16px;
     }
+
+    button{
+      white-space: nowrap;
+      padding: 8px 16px !important;
+      display: flex  !important;
+    }
+
     #info{
       border: 2px solid red;
       display: flex;
@@ -106,14 +109,16 @@ const i18n = getI18n({ currentLocale });
       align-items: center;
       flex: 1;
       height: 100%;
-     
     }
+
     #container-inner{
-      border: 2px solid blue;
       display: flex;
       flex-direction: column;
       height: 100%;
-      width: 600px;
+      width: fit-content;
+      padding: 16px;
+      border-radius: 16px;
+      background-color: rgba(128, 128, 128, 0.185);
 
       > h3{
         flex: 1;
@@ -122,7 +127,6 @@ const i18n = getI18n({ currentLocale });
        justify-content: center;
        align-items: center;
       }
-     
     }
   }
 </style>
@@ -157,11 +161,15 @@ const i18n = getI18n({ currentLocale });
     ) => {
 
       const selectStyle = document.getElementById("style-selector-button");
-      selectStyle.style.display = "block";
+      selectStyle.style.display = "flex";
       const uploadSection = document.getElementById("upload-section");
       uploadSection.style.display = "none";
       const previewImageContainer = document.getElementById("preview-image-container");
       previewImageContainer.style.display = "flex";
+      const transformImg =  document.createElement("img");
+      transformImg.src = "./transform.svg";
+      transformImg.className = "size-[42px]";
+
 
      // loader.removeAttribute("style");
       const public_id = e.detail.info.public_id;
@@ -171,8 +179,9 @@ const i18n = getI18n({ currentLocale });
       previewResponse.showTransformerMenu();
       const transformInfoContainer = document.getElementById("transform-info");
       const transformButton = document.createElement("button");
-      transformButton.className = "w-full dark:hover:bg-purple-700  hover:opacity-80 dark:text-white font-bold py-2 px-4 rounded dark:bg-black m-2";
+      transformButton.className = "flex gap-4 items-center bg-custom-linear uppercase transition-opacity duration-300 hover:opacity-80 text-white font-bold py-4 px-8 rounded-xl transition ease text-2xl mt-2" 
       transformButton.textContent = "Transformar";
+      transformButton.appendChild(transformImg);
       transformInfoContainer.appendChild(transformButton);
 
       // transformButton.disabled = true;
@@ -205,6 +214,8 @@ const i18n = getI18n({ currentLocale });
    
 
     promtsOptions.forEach((option) => {
+      const previewImageContainer = document.getElementById("preview-image-container");
+      const buttonCldUploadWidget = document.getElementById("cdWidget");
       const selectedSection = document.getElementById(option.type);
       const stylePromt = document.createElement("div");
       stylePromt.className =
@@ -213,8 +224,33 @@ const i18n = getI18n({ currentLocale });
         stylePromt.addEventListener("click", () => {
         promt = option.value;
         dialog.close();
+        previewImageContainer.style.display = "flex";
+        buttonCldUploadWidget.style.display = "flex";
       });
       selectedSection.appendChild(stylePromt);
+    });
+  }
+
+  const startedButton = document.getElementById("started-button");
+  startedButton.addEventListener("click", () => {
+    dialog.showModal();
+    startedButton.style.display = "none";
+  });
+
+  const selectorButton = document.getElementById("style-selector-button");
+  if (selectorButton) {
+    selectorButton.addEventListener("click", () => {
+     
+      const previewImageContainer = document.getElementById("preview-image-container");
+      previewImageContainer.style.display = "none";
+      const newBUtton = document.getElementById("started-button");
+      newBUtton.style.display = "flex";
+      newBUtton.className = "flex gap-4 items-center bg-custom-linear uppercase transition-opacity duration-300 hover:opacity-80 text-white font-bold py-6 px-12 rounded-xl transition ease text-3xl m-2";
+      newBUtton.textContent = "Get started";
+      const transformDataContainer = document.getElementById("transform-data-container"); 
+      transformDataContainer.appendChild(newBUtton);
+      // window.location.reload();
+     
     });
   }
 

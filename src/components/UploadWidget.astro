@@ -12,11 +12,13 @@ const i18n = getI18n({currentLocale});
 >
 <label
 class=" block text-4xl text-center font-medium text-gray-700 dark:text-gray-300"
+
 >
-{i18n.form.uploadImage}
+<div id="style-selection">
+  <button id="started-button" class="flex gap-4 items-center bg-custom-linear uppercase transition-opacity duration-300 hover:opacity-80 text-white font-bold py-6 px-12 rounded-xl transition ease text-3xl m-2">{i18n.buttons.uploadImage}<img src="./upload.svg" class="size-[42px]" alt="upload icon"></button>
+</div>
+
 </label>
-
-
   <CldUploadWidget
     id="local-widget"
     options={{
@@ -59,7 +61,7 @@ class=" block text-4xl text-center font-medium text-gray-700 dark:text-gray-300"
     }}
     uploadPreset="mxvi-upload"
   >
-    <button id="cdWidget" class="flex gap-4 items-center bg-custom-linear uppercase transition-opacity duration-300 hover:opacity-80 text-white font-bold py-6 px-12 rounded-xl transition ease text-3xl m-2">{i18n.buttons.uploadImage} <img src="./upload.svg" class="size-[42px]" alt="upload icon"></button>
+    <button id="cdWidget" style="display: none;" class="flex gap-4 items-center bg-custom-linear uppercase transition-opacity duration-300 hover:opacity-80 text-white font-bold py-6 px-12 rounded-xl transition ease text-3xl m-2">{i18n.form.uploadImage}<img src="./upload.svg" class="size-[42px]" alt="upload icon"></button>
   </CldUploadWidget>
 </div>
 <style>
