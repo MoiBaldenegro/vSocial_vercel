@@ -9,6 +9,15 @@ export const promtsOptions = [
     src: "./bg_01.webp",
   },
   {
+    name: "Infinite mirror",
+    value: {
+      replaceBackground:
+        "Endless reflections in a bathroom with infinite mirrors stretching to the horizon each mirror reflecting terrifying images like ghostly faces or figures emerging from black water creating a dimly lit atmosphere filled with unsettling shadows",
+    },
+    type: "Terrorific background",
+    src: "./bg_13.webp",
+  },
+  {
     name: "Bats",
     value: {
       replaceBackground:
@@ -97,6 +106,33 @@ export const promtsOptions = [
     },
     type: "Terrorific background",
     src: "./bg_11.webp",
+  },
+  {
+    name: "Withered sunflowers",
+    value: {
+      replaceBackground:
+        "A field of withered sunflowers under a red moon The sunflowers are tall but dry with drooping petals and darkened stems creating a haunting and eerie atmosphere The sky is dark with the large red moon casting an eerie glow over the scene Some sunflowers are partially bent while the dry earth and scattered leaves add to the desolate feeling The red moon dominates the sky adding a mystical and ominous tone to the night scene",
+    },
+    type: "Terrorific background",
+    src: "./bg_12.webp",
+  },
+  {
+    name: "River of blood",
+    value: {
+      replaceBackground:
+        "A dark landscape featuring a river of blood flowing through a desolate terrain surrounded by twisted trees and eerie fog the water glistening ominously under a pale moonlight creating a haunting atmosphere filled with a sense of dread and foreboding",
+    },
+    type: "Terrorific background",
+    src: "./bg_14.webp",
+  },
+  {
+    name: "Grass of hand",
+    value: {
+      replaceBackground:
+        "A surreal landscape where the grass is made up of countless hands reaching out from the ground each hand varying in size and expression creating a chilling scene under a dark sky with ominous clouds a sense of unease fills the air as the hands seem to grasp at anything nearby",
+    },
+    type: "Terrorific background",
+    src: "./bg_15.webp",
   },
 
   // Face make up
