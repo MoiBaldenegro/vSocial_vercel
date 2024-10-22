@@ -1,4 +1,18 @@
 export const promtsOptions = [
+  /*
+  {
+    name: "experimental",
+    value: {
+      replace: {
+        from: "face",
+        to: "Bird skin mask",
+        preserveGeometry: true,
+      },
+    },
+    type: "Happy Halloween",
+    src: "./skin_10.webp",
+  },
+  */
   {
     name: "Pumpkins",
     value: {
