@@ -80,6 +80,7 @@ export const promtsOptions = [
     type: "Terrorific background",
     src: "./bg_08.webp",
   },
+
   {
     name: "Terrifying library",
     value: {
@@ -97,6 +98,15 @@ export const promtsOptions = [
     },
     type: "Terrorific background",
     src: "./bg_09.webp",
+  },
+  {
+    name: "Melting clocks",
+    value: {
+      replaceBackground:
+        "A surreal landscape featuring melting clocks draped over barren trees and distorted structures the clocks ooze and drip like wax under a distorted sky filled with swirling colors creating a dreamlike yet unsettling atmosphere as time seems to lose its meaning and reality blurs into a nightmarish vision where the boundaries of time and space dissolve",
+    },
+    type: "Terrorific background",
+    src: "./bg_21.webp",
   },
   {
     name: "Zombie horde",
@@ -178,6 +188,16 @@ export const promtsOptions = [
     },
     type: "Terrorific background",
     src: "./bg_20.webp",
+  },
+
+  {
+    name: "Terrifying church",
+    value: {
+      replaceBackground:
+        "A dark and abandoned church standing in the middle of a desolate landscape with broken stained glass windows casting eerie colored light across the cracked stone floor the pews are empty and decaying while strange shadows move along the walls grotesque gargoyles loom from the rafters watching over the silent altar as a cold wind howls through the broken doors creating an atmosphere filled with dread and the faint whispers of forgotten prayers",
+    },
+    type: "Terrorific background",
+    src: "./last.webp",
   },
 
   // Face make up
@@ -301,6 +321,7 @@ export const promtsOptions = [
     type: "Face make up",
     src: "./skin_10.webp",
   },
+
   // Hair recolor
   {
     name: "Recolor purple",
