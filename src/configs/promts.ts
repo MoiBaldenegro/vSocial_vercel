@@ -1,18 +1,28 @@
 export const promtsOptions = [
-  /*
   {
-    name: "experimental",
+    name: "Gothic",
     value: {
       replace: {
-        from: "face",
-        to: "Bird skin mask",
+        to: `transform into a gothic man character clothes and makeup`,
+        from: "people",
         preserveGeometry: true,
       },
     },
-    type: "Happy Halloween",
-    src: "./skin_10.webp",
+    type: "Happy Halloween especially outfits",
+    src: "./out_01.webp",
   },
-  */
+  {
+    name: "Zombie Apocalypse Survivor",
+    value: {
+      replace: {
+        to: `transform into a Zombie Apocalypse Survivor character eith outfit and hair`,
+        from: "people",
+        preserveGeometry: true,
+      },
+    },
+    type: "Happy Halloween especially outfits",
+    src: "./out_02.webp",
+  },
   {
     name: "Pumpkins",
     value: {
@@ -560,7 +570,7 @@ export const promtsOptions = [
 
 export const styleSectionsPromts = [
   {
-    name: "Happy Halloween",
+    name: "Happy Halloween especially outfits",
   },
   {
     name: "Terrorific background",
