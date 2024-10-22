@@ -81,6 +81,15 @@ export const promtsOptions = [
     src: "./bg_08.webp",
   },
   {
+    name: "Terrifying library",
+    value: {
+      replaceBackground:
+        "A dimly lit ancient library filled with towering bookshelves covered in dust where old tattered books float eerily in the air each one glowing faintly as if imbued with a dark magic the shadows dance across the room creating unsettling shapes on the walls while whispers echo softly from the depths of the library hinting at secrets long forgotten and lurking horrors",
+    },
+    type: "Terrorific background",
+    src: "./bg_18.webp",
+  },
+  {
     name: "Mad scientist",
     value: {
       replaceBackground:
@@ -133,6 +142,42 @@ export const promtsOptions = [
     },
     type: "Terrorific background",
     src: "./bg_15.webp",
+  },
+  {
+    name: "Dessert with human corpses",
+    value: {
+      replaceBackground:
+        "A vast desolate desert under a blazing sun filled with numerous human corpses littering the sandy landscape their lifeless bodies in various states of decay and partially buried in the shifting sands creating a haunting and macabre scene with eerie shadows stretching across the ground as the hot wind whistles through the silence of this grim wasteland",
+    },
+    type: "Terrorific background",
+    src: "./bg_16.webp",
+  },
+  {
+    name: "Frozen lake",
+    value: {
+      replaceBackground:
+        "A chilling scene of a frozen lake covered in thick ice where dark shadows move ominously beneath the surface the ice cracking slightly as if something is stirring below creating a sense of dread and mystery with a pale moonlight casting an eerie glow on the landscape surrounding the lake thick trees loom in the background adding to the foreboding atmosphere",
+    },
+    type: "Terrorific background",
+    src: "./bg_17.webp",
+  },
+  {
+    name: "Terrifying dolls",
+    value: {
+      replaceBackground:
+        "A dimly lit room filled with creepy dolls standing in eerie poses their porcelain faces twisted into unsettling smiles with lifeless eyes that seem to follow you their bodies dressed in tattered clothing and some have frayed hair while others are missing limbs creating a haunting atmosphere as shadows loom around them hinting at a malevolent presence lurking in the corners of the room",
+    },
+    type: "Terrorific background",
+    src: "./bg_19.webp",
+  },
+  {
+    name: "Deep Hell",
+    value: {
+      replaceBackground:
+        "A nightmarish landscape depicting a deep hell filled with swirling flames and dark shadows endless chasms and jagged rocks surround a river of molten lava the air thick with smoke and the cries of tormented souls echo throughout the cavernous depths creating a terrifying atmosphere where the light flickers and dances across grotesque figures lurking in the darkness waiting for the next unfortunate soul to arrive",
+    },
+    type: "Terrorific background",
+    src: "./bg_20.webp",
   },
 
   // Face make up
