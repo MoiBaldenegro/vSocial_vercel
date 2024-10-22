@@ -7,9 +7,10 @@ import { getI18n } from "../i18n";
 const {currentLocale = "en"} = Astro;
 
 const i18n = getI18n({currentLocale});
+
 ---
 
-<section class="my-12">
+<section class="my-12 ">
   <h2 class="text-3xl font-bold mb-6 text-center">
     {i18n.testimonials.title}
   </h2>
@@ -17,3 +18,12 @@ const i18n = getI18n({currentLocale});
     {testimonials.map((testimonial) => <Testimonial {...testimonial} />)}
   </div>
 </section>
+<style>
+   
+   div , h2{
+    animation: reveal both;
+    animation-timeline: view();
+    animation-range: entry 5% cover 35%;
+  }
+
+</style>

@@ -27,7 +27,7 @@ const i18n = getI18n({ currentLocale });
 
       <div id="preview-image-container" style="display: none;">
         <div id="container-inner">
-          <h3>Estilo: Aleatorio</h3>
+          <h3 id="promt-title" class="text-center dark:text-white text-4xl font-bold">Estilo: Aleatorio</h3>
           <div id="transform-info">
             <button
               id="style-selector-button"
@@ -58,14 +58,27 @@ const i18n = getI18n({ currentLocale });
       id="reset-button"
       style="display:none"
       class="flex gap-4 items-center bg-custom-linear uppercase transition-opacity duration-300 hover:opacity-80 text-white font-bold py-6 px-12 rounded-xl transition ease text-3xl mt-2"
-      >Resetear <img src="./reset.svg" class="size-[42px]" alt="" /></button
+      >Reset<img src="./reset.svg" class="size-[42px]" alt="" /></button
     >
   </div>
-  <UserResultsCarousel />
+  <section id="marketing-section" >
+    <UserResultsCarousel />
   <Features />
   <Testimonials />
+  </section>
 </Layout>
 <style>
+
+section[id="marketing-section"]{
+      width: 70% !important;
+      margin: auto;
+      display: flex;
+      flex-direction: column ;
+      padding: 32px;
+      gap: 32px;
+      
+    }
+
   #last {
     height: 200px;
     display: flex;
@@ -107,6 +120,7 @@ const i18n = getI18n({ currentLocale });
     #buttons-container {
       gap: 16px;
     }
+   
 
     button {
       white-space: nowrap;
@@ -115,14 +129,13 @@ const i18n = getI18n({ currentLocale });
     }
 
     #info {
-      border: 2px solid red;
       display: flex;
       justify-content: center;
       align-items: center;
       flex: 1;
       height: 100%;
     }
-
+  
     #container-inner {
       display: flex;
       flex-direction: column;
@@ -171,6 +184,10 @@ const i18n = getI18n({ currentLocale });
     widget.addEventListener("clduploadwidget:success", ((
       e: CustomEvent<{ info: { public_id: string } }>
     ) => {
+      const verifyTransformIMage = document.getElementById("preview-img");
+      if(verifyTransformIMage){
+        verifyTransformIMage.remove();
+      }
       const selectStyle = document.getElementById("style-selector-button");
       selectStyle.style.display = "flex";
       const uploadSection = document.getElementById("upload-section");
@@ -189,14 +206,18 @@ const i18n = getI18n({ currentLocale });
       const previewResponse = transformerModel(public_id, promt);
       previewResponse.getImageUrl();
       previewResponse.showTransformerMenu();
+      const verifyTransformButton = document.getElementById("transform-button");
       const transformInfoContainer = document.getElementById("transform-info");
       const transformButton = document.createElement("button");
+      transformButton.id = "transform-button";
       transformButton.className =
         "flex gap-4 items-center bg-custom-linear uppercase transition-opacity duration-300 hover:opacity-80 text-white font-bold py-4 px-8 rounded-xl transition ease text-2xl mt-2";
       transformButton.textContent = "Transformar";
       transformButton.appendChild(transformImg);
-      transformInfoContainer.appendChild(transformButton);
-
+      if(!verifyTransformButton){
+        transformInfoContainer.appendChild(transformButton);
+      }
+     
       // transformButton.disabled = true;
       transformButton.addEventListener("click", () => {
         previewImageContainer.style.display = "none";
@@ -277,11 +298,13 @@ const i18n = getI18n({ currentLocale });
 
       // Agregar la tarjeta a la sección seleccionada
       selectedSection.appendChild(cardContainer);
+      const promtTitle = document.getElementById("promt-title");
 
       // Evento para manejar el clic
       stylePromt.addEventListener("click", () => {
         promt = option.value; // Asignar el valor de la opción seleccionada
-        dialog.close(); // Cerrar el diálogo
+        dialog.close(); 
+        promtTitle.textContent = `Style : ${option.name}`;
         previewImageContainer.style.display = "flex"; // Mostrar el contenedor de previsualización
         buttonCldUploadWidget.style.display = "flex"; // Mostrar el botón de carga
       });
@@ -297,20 +320,16 @@ const i18n = getI18n({ currentLocale });
   const selectorButton = document.getElementById("style-selector-button");
   if (selectorButton) {
     selectorButton.addEventListener("click", () => {
-      const previewImageContainer = document.getElementById(
-        "preview-image-container"
-      );
-      previewImageContainer.style.display = "none";
-      const newBUtton = document.getElementById("started-button");
-      newBUtton.style.display = "flex";
-      newBUtton.className =
-        "flex gap-4 items-center bg-custom-linear uppercase transition-opacity duration-300 hover:opacity-80 text-white font-bold py-6 px-12 rounded-xl transition ease text-3xl m-2";
-      newBUtton.textContent = "Get started";
-      const transformDataContainer = document.getElementById(
-        "transform-data-container"
-      );
-      transformDataContainer.appendChild(newBUtton);
-      // window.location.reload();
-    });
-  }
+      
+      const previewImage= document.getElementById("transform-data-container");
+
+if(previewImage){
+  previewImage.style.display = "none";
+  const uploadSection = document.getElementById("upload-section");
+  const cldButton = document.getElementById("cdWidget");
+    uploadSection.style.display = "flex";  
+    cldButton.style.display = "none";
+    startedButton.style.display = "flex";
+}})}
+    
 </script>

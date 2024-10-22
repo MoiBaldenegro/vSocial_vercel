@@ -1,6 +1,6 @@
 {
   "site": {
-    "title": "Halloween Social Image Generator",
+    "title": "Halloween Social Image Generator - Participating project in the Midudev 2024 hackathon - Powered with Cloudinary ",
     "description": "Create professional images for your social networks in seconds"
   },
   "home": {
@@ -45,7 +45,7 @@
     "title": "Our Users' Results"
   },
   "footer": {
-    "rights": "All rights reserved."
+    "rights": "Moises Baldenegro Melendez"
   },
   "hero": {
     "title": "Generate <0>Professional Images</0> for Social Networks",

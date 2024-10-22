@@ -27,7 +27,7 @@ export const promtsOptions = [
     src: "./bg_03.webp",
   },
   {
-    name: "Scary clows",
+    name: "Scary clowns",
     value: {
       replaceBackground:
         "A realistic background featuring an assortment of terrifying clown heads in various sizes and expressions The clown heads should be detailed showcasing their creepy makeup sharp teeth and sinister grins The setting is an outdoor scene with fallen autumn leaves and a hint of dusk lighting to create a spooky atmosphere The focus is on the clown heads with some surrounded by Halloween decorations like bats spider webs and eerie props in the background",
@@ -397,7 +397,7 @@ export const promtsOptions = [
     src: "./filter_06.webp",
   },
   {
-    name: "Red eye",
+    name: "Negative",
     value: {
       negate: true,
     },

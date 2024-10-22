@@ -22,17 +22,19 @@ const { title } = Astro.props;
     <title>{title}</title>
   </head>
   <body class="bg-white dark:bg-gray-900 text-gray-900 dark:text-white">
+    <div class="background"></div>
     <header class="flex flex-col md:flex-row justify-between items-center">
       <div class="flex flex-col md:flex-row gap-4 md:items-center px-24 py-8">
-        <a class="text-5xl text-center font-bold py-8">{i18n.site.title}</a>
         <img src="./escudo.png" alt="logo" class="size-[250px] logo" />
       </div>
       <nav class="hidden md:block md:p-8">
       </nav>
     </header>
     <slot />
-    <footer class="p-4 text-center">
+    <footer class="p-4 text-center p-32 flex items-center justify-center gap-8">
       <p>{i18n.site.title}. {i18n.footer.rights}</p>
+      <svg version="1.2" preserveAspectRatio="xMidYMid" viewBox="0 0 228 198" class="size-[85px]" xmlns="http://www.w3.org/2000/svg" width="228" height="198"><g><path fill="#199afc" d="M73.2 126.4c-15 15-15 39.3 0 54.3L19 126.4C4 111.5 4 87.2 19 72.2L73.2 18c15-15 39.2-15 54.2 0s15 39.2 0 54.2z"></path><path fill="#1d5682" d="m73.2 126.4 27.1-27.1 27.1 27.1c15 15 15 39.3 0 54.3-15 14.9-39.2 14.9-54.2 0-15-15-15-39.3 0-54.3z"></path><g><path fill="#199afc" d="M185.5 84.3c8.3-8.2 8.3-21.7 0-29.9l30 29.9c8.2 8.3 8.2 21.7 0 30l-30 30c-8.3 8.3-21.7 8.3-30 0s-8.3-21.7 0-30z"></path><path fill="#1d5682" d="m185.5 84.3-15 15-15-15c-8.3-8.2-8.3-21.7 0-29.9 8.3-8.3 21.7-8.3 30 0 8.3 8.2 8.3 21.7 0 29.9z"></path></g></g></svg>
+      <img src="https://upload.wikimedia.org/wikipedia/commons/b/b2/Cloudinary_logo.svg" class="size-[250px]" alt="">
     </footer>
   </body>
 </html>
@@ -51,17 +53,13 @@ const { title } = Astro.props;
   
 
   html {
+    
     font-family: system-ui, sans-serif;
-    background-size: 224px;
+   
   }
 
-  /*
-  div {
-    animation: reveal both;
-    animation-timeline: view();
-    animation-range: entry 20% cover 30%;
-  }
-    */
+ 
+    
 
   code {
     font-family:
@@ -76,10 +74,26 @@ const { title } = Astro.props;
   }
 
   body {
+    
     transition:
       background-color 0.7s ease,
       color 0.8s ease;
+      
   }
+  .background {
+    position: fixed; /* O absolute, según tus necesidades */
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-image: url('backg.webp');
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    opacity: 0.08 !important; /* Cambia el valor para ajustar la opacidad */
+    z-index: -1; /* Asegura que esté detrás del contenido */
+}
+  
   .logo {
     filter: drop-shadow(0px 8px 6px rgb(58, 58, 58));
   }

@@ -12,6 +12,34 @@ export function previewsExecution(preview) {
         const newPreview = facebookPreview(preview.url, preview.title, preview.name,);
         return newPreview;
     }
+    if (preview.title === PreviewsOptions.INSTAGRAM_PROFILE) {
+        const newPreview = facebookPreview(preview.url, preview.title, preview.name,);
+        return newPreview;
+    }
+    if (preview.title === PreviewsOptions.LINKEDIN_PROFILE) {
+        const newPreview = facebookPreview(preview.url, preview.title, preview.name,);
+        return newPreview;
+    }
+    if (preview.title === PreviewsOptions.DISCORD_PROFILE) {
+        const newPreview = facebookPreview(preview.url, preview.title, preview.name,);
+        return newPreview;
+    }
+    if (preview.title === PreviewsOptions.TWITCH_PROFILE) {
+        const newPreview = facebookPreview(preview.url, preview.title, preview.name,);
+        return newPreview;
+    }
+    if (preview.title === PreviewsOptions.TWITTER_PROFILE) {
+        const newPreview = facebookPreview(preview.url, preview.title, preview.name,);
+        return newPreview;
+    }
+    if (preview.title === PreviewsOptions.WHATSAPP_PROFILE) {
+        const newPreview = facebookPreview(preview.url, preview.title, preview.name,);
+        return newPreview;
+    }
+    if (preview.title === PreviewsOptions.YOUTUBE_PROFILE) {
+        const newPreview = facebookPreview(preview.url, preview.title, preview.name,);
+        return newPreview;
+    }
     return "";
 
 }

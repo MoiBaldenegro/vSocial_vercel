@@ -1,18 +1,18 @@
 
 export const features = [
   {
-    title: "features.quick.title",
-    description: "features.quick.description",
+    title: "optimize your image",
+    description: "Our artificial intelligence improves your images to perfect quality",
     icon: "⚡",
   },
   {
-    title: "features.professional.title",
-    description: "features.professional.description",
+    title: "Explore our styles",
+    description: "Create amazing styles for your images with our pre-designed templates",
     icon: "🎨",
   },
   {
-    title: "features.customizable.title",
-    description: "features.customizable.description",
+    title: "perfect formats",
+    description: "Export your optimized formats for each social networkn",
     icon: "🔧",
   },
 ];

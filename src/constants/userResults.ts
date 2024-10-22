@@ -7,17 +7,18 @@ interface UserResult {
 export const userResults: UserResult[] = [
   {
     name: "Billie Eilish",
-    before: "/images/before1.jpg",
-    after: "/images/after1.jpg",
+    before: "/billie.webp",
+    after: "/billieAfter.jfif",
   },
   {
     name: "Dany Villareal",
-    before: "/images/before2.jpg",
-    after: "/images/after2.jpg",
+    before: "/dany_01.webp",
+    after: "/dany_02.webp",
   },
   {
     name: "Ale Villareal",
-    before: "/images/before3.jpg",
-    after: "/images/after3.jpg",
+    before: "/ale_01.webp",
+    after: "/ale_02.webp",
   },
+
 ];

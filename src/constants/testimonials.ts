@@ -1,16 +1,16 @@
 
 export const testimonials = [
   {
-    name: "testimonials.user1.name",
-    role: "testimonials.user1.role",
-    content: "testimonials.user1.content",
-    avatar: "https://i.pravatar.cc/150?img=1",
+    name: "James Hedfield",
+    role: "User - Metallica guitarist",
+    content: "wow the results are really very go",
+    avatar: "https://boom-site-wp.s3.us-east-2.amazonaws.com/wp-content/uploads/2024/03/31122024/JamesHetfield800GETTY_6_21.jpg",
   },
   {
-    name: "testimonials.user2.name",
-    role: "testimonials.user2.role",
-    content: "testimonials.user2.content",
-    avatar: "https://i.pravatar.cc/150?img=2",
+    name: "Dave Mustaine",
+    role: "User - Megadeth guitarist",
+    content: "Megadeth has always been and will always be a better band than Metallica, it had to be said and it was said.",
+    avatar: "https://media.gettyimages.com/id/85358008/es/foto/unspecified-studio-photo-of-dave-mustaine-and-megadeth-dave-mustaine.jpg?s=2048x2048&w=gi&k=20&c=mDFk5gI8AS1W08Yi4VpjPoZ3cgve4Buye44saJa8f8k=",
   },
 ];
 

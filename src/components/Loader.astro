@@ -1,10 +1,12 @@
 <div id="loader" style="display: none;" class="flex justify-center items-center w-full h-full">
-  <div class="loader-container">
+  <div class="loader-container relative">
     <div class="bat loader"></div>
-    <div class="loaderLetters"></div> 
+    <div class="loaderLetters "></div> 
+    <p class="absolute bottom-[0px]">The process may take a few minutes, please wait.</p>
+
    </div>
     </div>
-      <button style="display:none" id="preview-ready" 
+      <button style="display:none" id="preview-ready"  class="flex gap-4 items-center bg-custom-linear uppercase transition-opacity duration-300 hover:opacity-80 text-white font-bold py-6 px-12 rounded-xl transition ease text-3xl m-2"
       >Mostrar previsualizaciones <img src="./pre.svg" class="size-[42px]" alt="upload icon">
       </button>
 <style>
@@ -193,7 +195,6 @@ button {
   const readyButton = document.getElementById("preview-ready");
   if (readyButton) {
     readyButton.addEventListener("click", () => {
-      alert("Ready");
       resultsContainer.removeAttribute("style");
       readyButton.style.display = "none";
       resetButton.style.display = "flex";

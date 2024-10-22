@@ -14,3 +14,11 @@ const i18n = getI18n({currentLocale});
     {features.map((feature) => <FeatureCard {...feature} />)}
   </div>
 </section>
+<style>
+   
+   div, h2 {
+    animation: reveal both;
+    animation-timeline: view();
+    animation-range: entry 60% cover 80%;
+  }
+</style>

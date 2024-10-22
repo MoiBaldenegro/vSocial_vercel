@@ -8,7 +8,7 @@ const i18n = getI18n({currentLocale});
 ---
 
 <section class="my-12">
-  <h2 class="text-3xl font-bold mb-6 text-center">
+  <h2 class="text-4xl  font-bold mb-6 text-center">
     {i18n.userResults.title}
     <div class="user-results-carousel relative">
       <div class="carousel-container overflow-hidden">
@@ -18,23 +18,23 @@ const i18n = getI18n({currentLocale});
           {
             userResults.map((result, index) => (
               <div class="carousel-item flex-none w-full px-4">
-                <div class="bg-white dark:bg-gray-800 rounded-lg shadow-md p-6">
+                <div class="bg-white dark:bg-gray-800 rounded-lg shadow-md p-6 m-8">
                   <h3 class="text-xl font-semibold mb-4">{result.name}</h3>
                   <div class="grid grid-cols-2 gap-4">
                     <div>
                       <p class="text-sm mb-2">Antes</p>
                       <img
-                        src="billie.webp"
+                        src={`${result.before}`}
                         alt={`${result.name} antes`}
-                        class="w-full h-48 object-cover rounded"
+                        class="w-full  object-cover rounded"
                       />
                     </div>
                     <div>
                       <p class="text-sm mb-2">Después</p>
                       <img
-                        src="billieAfter.jfif"
+                        src={`${result.after}`}
                         alt={`${result.name} después`}
-                        class="w-full h-48 object-cover rounded"
+                        class="w-full object-cover rounded"
                       />
                     </div>
                   </div>
@@ -89,7 +89,14 @@ const i18n = getI18n({currentLocale});
 <style>
   .carousel-container {
     width: 100%;
-    max-width: 600px;
+    max-width: 800px;
     margin: 0 auto;
+  }
+  .text-gradient {
+    background-image: var(--accent-gradient);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-size: 400%;
+    background-position: 0%;
   }
 </style>
