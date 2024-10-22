@@ -1,7 +1,6 @@
 import { PreviewsOptions } from "../types/previews.types";
 
 export const networksFormats = {
-
   [PreviewsOptions.FACEBOOK_PROFILE]: {
     crop: {
       height: 720,
