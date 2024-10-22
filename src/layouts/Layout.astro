@@ -22,7 +22,7 @@ const { title } = Astro.props;
     <title>{title}</title>
   </head>
   <body class="bg-white dark:bg-gray-900 text-gray-900 dark:text-white">
-    <div class="background fixed top-0 left-0 w-full h-full bg-[url('./backg.webp')] bg-cover bg-center bg-no-repeat opacity-8 z-[-1]"></div>
+    <img src="./backg.webp" class="background" alt="">
     <header class="flex flex-col md:flex-row justify-between items-center">
       <div class="flex flex-col md:flex-row gap-4 md:items-center px-24 py-8">
         <img src="./escudo.png" alt="logo" class="size-[250px] logo" />
@@ -81,8 +81,13 @@ const { title } = Astro.props;
       
   }
   .background {
-   
+    position: fixed; /* O absolute, según tus necesidades */
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
     opacity: 0.08 !important; /* Cambia el valor para ajustar la opacidad */
+    z-index: -1; /* Asegura que esté detrás del contenido */
 }
   
   .logo {
