@@ -8,5 +8,8 @@ export const enum PreviewsOptions {
   TWITTER_PROFILE = "twitter_profile",
   WHATSAPP_PROFILE = "whatsapp_profile",
   YOUTUBE_PROFILE = "youtube_profile",
+  YOUTUBE_BANNER = "youtube_banner",
+  LINKEDIN_BANNER = "linkedin_banner",
+  TWITTER_BANNER = "twitter_banner",
 
 }

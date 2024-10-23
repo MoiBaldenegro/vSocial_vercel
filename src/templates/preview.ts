@@ -7,6 +7,9 @@ import { twitchProfileCard } from "./twitchProfile";
 import { twitterProfileCard } from "./twitterProfile";
 import { whatsappProfileCard } from "./whatsapp";
 import { youtubeProfileCard } from "./youtubeProfile";
+import { youtubeProfileCardBanner } from "./youtubeBanner";
+import { linkedinProfileCardBanner } from "./linkedinBanner";
+import { twitterProfileCardBanner } from "./twitterBanner";
 
 export const facebookPreview = (
   url: string,
@@ -39,7 +42,13 @@ export const facebookPreview = (
                   ? whatsappProfileCard(url)
                   : preview === PreviewsOptions.YOUTUBE_PROFILE
                     ? youtubeProfileCard(url)
-                    : null;
+                    : preview === PreviewsOptions.YOUTUBE_BANNER
+                      ? youtubeProfileCardBanner(url)
+                      : preview === PreviewsOptions.LINKEDIN_BANNER
+                        ? linkedinProfileCardBanner(url)
+                        : preview === PreviewsOptions.TWITTER_BANNER
+                          ? twitterProfileCardBanner(url)
+                          : "";
   return `
       <div class="bg-white dark:bg-gray-800 rounded-lg shadow-md p-4 w-[500px]" h-fit>
           <h4 class="text-lg font-semibold mb-2">${title}</h4>

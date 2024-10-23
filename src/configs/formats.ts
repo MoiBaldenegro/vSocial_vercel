@@ -38,6 +38,43 @@ export const networksFormats = {
       gravity: "face",
     },
   },
+  [PreviewsOptions.LINKEDIN_BANNER]: {
+    crop: {
+      height: 444,
+      width: 1776,
+      source: true,
+      type: "fill",
+      gravity: "face",
+    },
+  },
+
+  [PreviewsOptions.TWITTER_PROFILE]: {
+    crop: {
+      height: 500,
+      width: 500,
+      source: true,
+      type: "fill",
+      gravity: "face",
+    },
+  },
+  [PreviewsOptions.TWITTER_BANNER]: {
+    crop: {
+      height: 500,
+      width: 1500,
+      source: true,
+      type: "fill",
+      gravity: "face",
+    },
+  },
+  [PreviewsOptions.WHATSAPP_PROFILE]: {
+    crop: {
+      height: 360,
+      width: 360,
+      source: true,
+      type: "fill",
+      gravity: "face",
+    },
+  },
   [PreviewsOptions.DISCORD_PROFILE]: {
     crop: {
       height: 600,
@@ -56,24 +93,6 @@ export const networksFormats = {
       gravity: "face",
     },
   },
-  [PreviewsOptions.TWITTER_PROFILE]: {
-    crop: {
-      height: 500,
-      width: 500,
-      source: true,
-      type: "fill",
-      gravity: "face",
-    },
-  },
-  [PreviewsOptions.WHATSAPP_PROFILE]: {
-    crop: {
-      height: 360,
-      width: 360,
-      source: true,
-      type: "fill",
-      gravity: "face",
-    },
-  },
   [PreviewsOptions.YOUTUBE_PROFILE]: {
     crop: {
       height: 800,
@@ -83,5 +102,15 @@ export const networksFormats = {
       gravity: "face",
     },
   },
-};
+  [PreviewsOptions.YOUTUBE_BANNER]: {
+    crop: {
+      height: 1152,
+      width: 2048,
+      source: true,
+      type: "fill",
+      gravity: "face",
+    },
+  },
 
+
+}

@@ -31,6 +31,18 @@ export const renameFormat = (name) => {
     if (name === PreviewsOptions.YOUTUBE_PROFILE) {
         return "Youtube profile: 800 x 800px";
     }
+    if (name === PreviewsOptions.YOUTUBE_BANNER) {
+        return "Youtube banner: 1152 x 2048px";
+    }
+    if (name === PreviewsOptions.YOUTUBE_BANNER) {
+        return "Youtube banner: 1152 x 2048px";
+    }
+    if (name === PreviewsOptions.LINKEDIN_BANNER) {
+        return "Linkedin banner 1776 x 444px";
+    }
+    if (name === PreviewsOptions.TWITTER_BANNER) {
+        return "Twitter banner: 500 x 1500px";
+    }
 
     return "";
 };

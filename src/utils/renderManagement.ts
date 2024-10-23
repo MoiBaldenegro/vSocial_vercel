@@ -40,6 +40,21 @@ export function previewsExecution(preview) {
         const newPreview = facebookPreview(preview.url, preview.title, preview.name,);
         return newPreview;
     }
+    if (preview.title === PreviewsOptions.YOUTUBE_BANNER) {
+        const newPreview = facebookPreview(preview.url, preview.title, preview.name,);
+        return newPreview;
+
+    }
+    if (preview.title === PreviewsOptions.LINKEDIN_BANNER) {
+
+        const newPreview = facebookPreview(preview.url, preview.title, preview.name,);
+        return newPreview;
+    }
+    if (preview.title === PreviewsOptions.TWITTER_BANNER) {
+        const newPreview = facebookPreview(preview.url, preview.title, preview.name,);
+        return newPreview;
+
+    }
     return "";
 
 }
