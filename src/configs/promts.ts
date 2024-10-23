@@ -24,6 +24,126 @@ export const promtsOptions = [
     src: "./out_02.webp",
   },
   {
+    name: "Witch of the Dark Forest",
+    value: {
+      replace: {
+        to: `transform into a man Witch of the Dark Forest character eith outfit and hair`,
+        from: "people",
+        preserveGeometry: true,
+      },
+    },
+    type: "Happy Halloween especially outfits",
+    src: "./out_03.webp",
+  },
+  {
+    name: "Vampire Countess",
+    value: {
+      replace: {
+        to: `transform into a man Vampire Countess character eith outfit and hair`,
+        from: "people",
+        preserveGeometry: true,
+      },
+    },
+    type: "Happy Halloween especially outfits",
+    src: "./out_04.webp",
+  },
+  {
+    name: "Haunted Marionette",
+    value: {
+      replace: {
+        to: `transform into a man Haunted Marionette character eith outfit and hair`,
+        from: "people",
+        preserveGeometry: true,
+      },
+    },
+    type: "Happy Halloween especially outfits",
+    src: "./out_05.webp",
+  },
+  {
+    name: "Terrorific Clown",
+    value: {
+      replace: {
+        to: `transform into a man terrorific clown character eith outfit and hair`,
+        from: "people",
+        preserveGeometry: true,
+      },
+    },
+    type: "Happy Halloween especially outfits",
+    src: "./out_06.webp",
+  },
+  {
+    name: "Ghostly Victorian",
+    value: {
+      replace: {
+        to: `transform into a man terrorific Ghostly Victorian character eith outfit and hair`,
+        from: "people",
+        preserveGeometry: true,
+      },
+    },
+    type: "Happy Halloween especially outfits",
+    src: "./out_07.webp",
+  },
+  {
+    name: "Mad Doctor",
+    value: {
+      replace: {
+        to: `transform into a man terrorific Mad Doctor character eith outfit and hair`,
+        from: "people",
+        preserveGeometry: true,
+      },
+    },
+    type: "Happy Halloween especially outfits",
+    src: "./out_08.webp",
+  },
+  {
+    name: "Possessed Puppet",
+    value: {
+      replace: {
+        to: `transform into a man terrorific Possessed Puppet character eith outfit and hair`,
+        from: "people",
+        preserveGeometry: true,
+      },
+    },
+    type: "Happy Halloween especially outfits",
+    src: "./out_09.webp",
+  },
+  {
+    name: "Demonic Jester",
+    value: {
+      replace: {
+        to: `transform into a man terrorific Demonic Jester character eith outfit and hair`,
+        from: "people",
+        preserveGeometry: true,
+      },
+    },
+    type: "Happy Halloween especially outfits",
+    src: "./out_10.webp",
+  },
+  {
+    name: "Cursed Pirate",
+    value: {
+      replace: {
+        to: `transform into a man terrorific Cursed Pirate character eith outfit and hair`,
+        from: "people",
+        preserveGeometry: true,
+      },
+    },
+    type: "Happy Halloween especially outfits",
+    src: "./out_11.webp",
+  },
+  {
+    name: "Ancient Pharaoh",
+    value: {
+      replace: {
+        to: `transform into a man Ancient Pharaoh character eith outfit and hair`,
+        from: "people",
+        preserveGeometry: true,
+      },
+    },
+    type: "Happy Halloween especially outfits",
+    src: "./out_12.webp",
+  },
+  {
     name: "Pumpkins",
     value: {
       replaceBackground:
@@ -570,10 +690,10 @@ export const promtsOptions = [
 
 export const styleSectionsPromts = [
   {
-    name: "Happy Halloween especially outfits",
+    name: "Terrorific background",
   },
   {
-    name: "Terrorific background",
+    name: "Happy Halloween especially outfits",
   },
   {
     name: "Face make up",
