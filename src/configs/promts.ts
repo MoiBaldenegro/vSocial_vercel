@@ -8,7 +8,7 @@ export const promtsOptions = [
         preserveGeometry: true,
       },
     },
-    type: "Happy Halloween especially outfits",
+    type: "Happy Halloween especial outfits",
     src: "./out_01.webp",
   },
   {
@@ -20,7 +20,7 @@ export const promtsOptions = [
         preserveGeometry: true,
       },
     },
-    type: "Happy Halloween especially outfits",
+    type: "Happy Halloween especial outfits",
     src: "./out_02.webp",
   },
   {
@@ -32,7 +32,7 @@ export const promtsOptions = [
         preserveGeometry: true,
       },
     },
-    type: "Happy Halloween especially outfits",
+    type: "Happy Halloween especial outfits",
     src: "./out_03.webp",
   },
   {
@@ -44,7 +44,7 @@ export const promtsOptions = [
         preserveGeometry: true,
       },
     },
-    type: "Happy Halloween especially outfits",
+    type: "Happy Halloween especial outfits",
     src: "./out_04.webp",
   },
   {
@@ -56,7 +56,7 @@ export const promtsOptions = [
         preserveGeometry: true,
       },
     },
-    type: "Happy Halloween especially outfits",
+    type: "Happy Halloween especial outfits",
     src: "./out_05.webp",
   },
   {
@@ -68,7 +68,7 @@ export const promtsOptions = [
         preserveGeometry: true,
       },
     },
-    type: "Happy Halloween especially outfits",
+    type: "Happy Halloween especial outfits",
     src: "./out_06.webp",
   },
   {
@@ -80,7 +80,7 @@ export const promtsOptions = [
         preserveGeometry: true,
       },
     },
-    type: "Happy Halloween especially outfits",
+    type: "Happy Halloween especial outfits",
     src: "./out_07.webp",
   },
   {
@@ -92,7 +92,7 @@ export const promtsOptions = [
         preserveGeometry: true,
       },
     },
-    type: "Happy Halloween especially outfits",
+    type: "Happy Halloween especial outfits",
     src: "./out_08.webp",
   },
   {
@@ -104,7 +104,7 @@ export const promtsOptions = [
         preserveGeometry: true,
       },
     },
-    type: "Happy Halloween especially outfits",
+    type: "Happy Halloween especial outfits",
     src: "./out_09.webp",
   },
   {
@@ -116,7 +116,7 @@ export const promtsOptions = [
         preserveGeometry: true,
       },
     },
-    type: "Happy Halloween especially outfits",
+    type: "Happy Halloween especial outfits",
     src: "./out_10.webp",
   },
   {
@@ -128,7 +128,7 @@ export const promtsOptions = [
         preserveGeometry: true,
       },
     },
-    type: "Happy Halloween especially outfits",
+    type: "Happy Halloween especial outfits",
     src: "./out_11.webp",
   },
   {
@@ -140,7 +140,7 @@ export const promtsOptions = [
         preserveGeometry: true,
       },
     },
-    type: "Happy Halloween especially outfits",
+    type: "Happy Halloween especial outfits",
     src: "./out_12.webp",
   },
   {
@@ -693,7 +693,7 @@ export const styleSectionsPromts = [
     name: "Terrorific background",
   },
   {
-    name: "Happy Halloween especially outfits",
+    name: "Happy Halloween especial outfits",
   },
   {
     name: "Face make up",

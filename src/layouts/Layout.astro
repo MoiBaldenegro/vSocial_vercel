@@ -50,6 +50,29 @@ const { title } = Astro.props;
       white 60%
     );
   }
+*{
+    scrollbar-width: thin;          
+    scrollbar-color: #888 #1e1e1e;  
+}
+
+::-webkit-scrollbar {
+    width: 10px;                  
+}
+
+::-webkit-scrollbar-track {
+    background: #1e1e1e;            
+}
+
+::-webkit-scrollbar-thumb {
+    background-color: #888;        
+    border-radius: 10px;            
+    border: 2px solid #1e1e1e;      
+}
+
+::-webkit-scrollbar-thumb:hover {
+    background-color: #555;         
+}
+
   
 
   html {
